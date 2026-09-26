@@ -188,10 +188,13 @@ p:last-child { margin-bottom: 0; }
 
 .titulo-artistico {
   font-family: var(--font-artistic);
-  font-weight: 700;
+  font-weight: 500;
+  font-size: 1.50rem;
   color: var(--violet-soft);
   letter-spacing: 0.04em;
   text-shadow: 0 0 26px rgba(139, 92, 246, 0.42);
+  display: block;
+  margin-top: 8px;  
 }
 
 /* Rótulo pequeño en mayúsculas (kicker / eyebrow) */
@@ -559,15 +562,15 @@ p:last-child { margin-bottom: 0; }
   font-size: 0.72rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--text-dim);
+  color: var(--text);
   margin-bottom: 1.6rem;
 }
 .hero__statement {
   font-family: var(--font-display);
   font-size: clamp(1.05rem, 2.3vw, 1.4rem);
-  font-weight: 400;
+  font-weight: 350;
   line-height: 1.6;
-  color: var(--text);
+  color: var(--gold);
   max-width: 34ch;
   margin-bottom: 2.2rem;
 }
@@ -1209,7 +1212,7 @@ select.control option { background: #0b0814; color: var(--text); }
 /* Selector tipo tarjeta (elementos / tiempos) */
 .choice-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 0.85rem;
   margin-bottom: 0.5rem;
 }
@@ -2016,12 +2019,15 @@ select.control option { background: #0b0814; color: var(--text); }
 }
 
 /* Anchos de lectura del ritual (antes dispersos en dos bloques duplicados) */
+#paso-2 .tarjeta-magica,
 #paso-3 .media-frame { max-width: var(--maxw-mid); margin-left: auto; margin-right: auto; }
 #paso-4 .bloque-contexto,
 #paso-4 .tarjeta-magica,
 #paso-4 .bloque-album,
+#paso-4 [data-reveal],
 #paso-5 .tarjeta-magica,
-#paso-5 .panel {
+#paso-5 .panel,
+#paso-5 [data-reveal] {
   max-width: var(--maxw-narrow);
   margin-left: auto;
   margin-right: auto;
@@ -2237,4 +2243,168 @@ select.control option { background: #0b0814; color: var(--text); }
   .site-header, .site-footer, .btn, .toast-stack { display: none !important; }
   body { background: #fff; color: #000; }
   .tarjeta-magica, .panel, .ventanita { border-color: #999; background: #fff; box-shadow: none; }
+}
+
+/* ===== SECCIÓN FORMULARIO DE TESTIMONIOS ===== */
+.testimonios-form-section {
+  padding: 80px 20px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(139, 92, 246, 0.08), transparent 70%);
+}
+
+.testimonios-form-card {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 50px 40px;
+  background: linear-gradient(180deg, rgba(21, 15, 36, 0.95) 0%, rgba(13, 10, 22, 0.98) 100%);
+  border: 1px solid rgba(155, 130, 200, 0.2);
+  border-radius: 20px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+}
+
+.testimonios-form-header {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.testimonios-form-icono {
+  font-size: 2.5rem;
+  color: var(--gold-soft, #d9b97e);
+  margin-bottom: 16px;
+  opacity: 0.9;
+}
+
+.testimonios-form-titulo {
+  font-family: var(--font-display, 'Cinzel', Georgia, serif);
+  font-size: 2rem;
+  color: var(--texto-principal, #f3eff9);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.testimonios-form-subtitulo {
+  font-family: Georgia, serif;
+  font-size: 1.05rem;
+  color: var(--texto-secundario, #b6aac9);
+  font-style: italic;
+  line-height: 1.6;
+}
+
+/* Formulario */
+.form-grupo {
+  margin-bottom: 22px;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--texto-secundario, #b6aac9);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(7, 6, 12, 0.6);
+  border: 1px solid rgba(155, 130, 200, 0.25);
+  border-radius: 8px;
+  color: var(--texto-principal, #f3eff9);
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--violet-soft, #8b5cf6);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.6;
+}
+
+.form-hint {
+  display: block;
+  font-size: 0.8rem;
+  color: #8578a0;
+  margin-top: 6px;
+  font-style: italic;
+}
+
+/* Estrellas de rating */
+.rating-stars {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.star-btn {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #4a3f6b;
+  cursor: pointer;
+  transition: color 0.15s, transform 0.15s;
+  padding: 0 4px;
+}
+
+.star-btn:hover,
+.star-btn.activa {
+  color: var(--gold-soft, #d9b97e);
+  transform: scale(1.15);
+}
+
+/* Mensaje de éxito */
+.testimonios-exito {
+  text-align: center;
+  padding: 30px 20px;
+}
+
+.testimonios-exito-icono {
+  font-size: 3.5rem;
+  color: #10b981;
+  margin-bottom: 20px;
+}
+
+.testimonios-exito h3 {
+  font-family: var(--font-display, 'Cinzel', Georgia, serif);
+  font-size: 1.5rem;
+  color: var(--texto-principal, #f3eff9);
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+}
+
+.testimonios-exito p {
+  color: var(--texto-secundario, #b6aac9);
+  font-family: Georgia, serif;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.testimonios-form-aviso {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #8578a0;
+  margin-top: 18px;
+  font-style: italic;
+}
+
+.testimonios-form-aviso i {
+  color: var(--violet-soft, #8b5cf6);
+  margin-right: 4px;
+}
+
+@media (max-width: 768px) {
+  .testimonios-form-card { padding: 35px 22px; }
+  .testimonios-form-titulo { font-size: 1.5rem; }
+  .star-btn { font-size: 1.6rem; }
 }

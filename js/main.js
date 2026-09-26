@@ -317,3 +317,61 @@
     ajustarAccesoCabecera();
   });
 })();
+
+/* ==========================================================================
+TESTIMONIOS.JS — Formulario de experiencias (Simplificado)
+========================================================================== */
+(function () {
+  'use strict';
+  var SP = (window.SP = window.SP || {});
+
+  function $(sel) { return document.querySelector(sel); }
+
+  function initTestimoniosForm() {
+    var form = $('#form-testimonio');
+    if (!form) return;
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var nombre = $('#test-nombre').value.trim();
+      var texto = $('#test-texto').value.trim();
+
+      if (!nombre || !texto) return;
+      if (texto.length < 10) {
+        alert('Por favor, escribí al menos 10 caracteres.');
+        return;
+      }
+
+      var btn = $('#btn-enviar-testimonio');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Enviando…';
+
+      SP.api.post('enviar_testimonio', {
+        nombre: nombre,
+        texto: texto,
+        origen: window.location.pathname.includes('oraculo') ? 'oraculo' : 'portal'
+      })
+        .then(function (r) {
+          if (r && r.exito) {
+            form.style.display = 'none';
+            var exito = $('#testimonio-exito');
+            if (exito) exito.style.display = 'block';
+          } else {
+            throw new Error((r && r.error) || 'Error al enviar.');
+          }
+        })
+        .catch(function (err) {
+          alert(err.message || 'No pudimos enviar tu testimonio. Intentá de nuevo.');
+          btn.disabled = false;
+          btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Enviar experiencia';
+        });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTestimoniosForm);
+  } else {
+    initTestimoniosForm();
+  }
+})();

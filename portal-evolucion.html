@@ -98,17 +98,21 @@
           <article class="ventanita" data-reveal>
             <span class="ventanita__icon"><i class="fa-solid fa-fingerprint" aria-hidden="true"></i></span>
             <h3>Registrate</h3>
-            <p>Completá tus datos para recibir tu Bitácora Evolutiva y habilitar tus llaves.</p>
+            <p>Completá tus datos para ordenar tu bitácora del viaje.</p>
           </article>
           <article class="ventanita" data-reveal="120">
             <span class="ventanita__icon"><i class="fa-solid fa-key" aria-hidden="true"></i></span>
-            <h3>Elegí tu llave</h3>
-            <p>Pase único, acceso libre o transferencia. Vos decidís cuántas veces volver.</p>
+            <h3>Elegí el medio de pago</h3>
+            <p>Desbloquea tu pase permanente:<br>
+              <br>
+              Mercado Pago <strong>$22.000</strong><br>
+              Transferencia <strong>$20.000</strong></p>
           </article>
           <article class="ventanita" data-reveal="240">
             <span class="ventanita__icon"><i class="fa-solid fa-mountain-sun" aria-hidden="true"></i></span>
             <h3>Viví el viaje</h3>
-            <p>Entrá al Oráculo con tu código y recorré el ritual de principio a fin.</p>
+            <p>Entrá al Oráculo y recorré el ritual de principio a fin cuantas veces quieras.<br>
+              Al finalizar recibirás por correo tu bitácora.</p>
           </article>
         </div>
       </div>
@@ -119,7 +123,7 @@
       <div class="contenedor contenedor--narrow">
         <span class="eyebrow" data-reveal style="display:block;text-align:center">Fase 1 de 3</span>
         <h2 class="section-title" data-reveal>Iniciá tu registro</h2>
-        <p class="section-lead" data-reveal>Completá tus datos para recibir tu Bitácora Evolutiva y habilitar tus llaves.</p>
+        <p class="section-lead" data-reveal>Completá tus datos para registrarte y adquirir tu acceso.</p>
 
         <div class="panel" data-reveal style="padding:clamp(1.5rem,4vw,2.5rem)">
           <form id="form-registro" novalidate>
@@ -132,11 +136,11 @@
               <input class="control" type="email" id="p-correo" name="Correo" autocomplete="email" required>
             </div>
             <div class="field">
-              <label for="p-whatsapp">WhatsApp (opcional)</label>
+              <label for="p-whatsapp">WhatsApp</label>
               <input class="control" type="tel" id="p-whatsapp" name="Whatsapp" autocomplete="tel">
             </div>
             <div class="field">
-              <label for="p-ubicacion">País / Provincia / Ciudad *</label>
+              <label for="p-ubicacion">País / Provincia / Ciudad</label>
               <input class="control" type="text" id="p-ubicacion" name="Ubicacion" required>
             </div>
 
@@ -204,25 +208,65 @@
 
         <div class="carrusel" data-carousel="5500" data-reveal>
           <div class="carrusel__riel">
+
             <div class="carrusel__item">
-              <p class="carrusel__quote">"El cortometraje me dejó en un estado de calma absoluta."</p>
-              <p class="carrusel__author">— Mateo Fernández</p>
+              <p class="carrusel__quote">"Mi número fué el 4
+              Reconocí lugares entrañables, ví la Naturaleza esplendorosa, inmensa y desconocida pero en asombrosa calma. Sentí la conexión con sus elementos: viento, fuego, tierra, sol y con las comunidades  originarias y su sabiduría. Que siga la Evolución! Gracias por compartir la experiencia! Aplauso final para todos 💓"</p>
+              <p class="carrusel__author">— Marcela F</p>
             </div>
-            <div class="carrusel__item">
-              <p class="carrusel__quote">"Una experiencia integral increíble. Volví a ingresar tres veces."</p>
-              <p class="carrusel__author">— Clara Baroni</p>
-            </div>
-            <div class="carrusel__item">
-              <p class="carrusel__quote">"El proceso de autodescubrimiento fue un antes y un después."</p>
-              <p class="carrusel__author">— Juan Ignacio</p>
-            </div>
+
           </div>
           <div class="carrusel__dots" data-carousel-dots style="justify-content:center"></div>
         </div>
       </div>
     </section>
 
-  </main>
+<!-- Sección: Compartí tu experiencia -->
+<section class="testimonios-form-section">
+  <div class="testimonios-form-card">
+    <div class="testimonios-form-header">
+      <i class="fa-solid fa-feather-pointed testimonios-form-icono"></i>
+      <h2 class="testimonios-form-titulo">Compartí tu experiencia</h2>
+      <p class="testimonios-form-subtitulo">
+        Tu voz inspira a otros viajeros.
+      </p>
+    </div>
+    
+    <form id="form-testimonio" class="testimonios-form">
+      <div class="form-grupo">
+        <label for="test-nombre" class="form-label">Nombre *</label>
+        <input type="text" id="test-nombre" name="nombre" required 
+               class="form-input" placeholder="Ej: Mateo F.">
+      </div>
+      
+      <div class="form-grupo">
+        <label for="test-texto" class="form-label">Testimonio *</label>
+        <textarea id="test-texto" name="texto" rows="4" required 
+                  class="form-textarea" 
+                  placeholder="¿Qué sentiste? ¿Qué te llevás?"></textarea>
+        <span class="form-hint">Queremos leerte ♥</span>
+      </div>
+      
+      <button type="submit" class="btn btn--primary btn--block" id="btn-enviar-testimonio">
+        <i class="fa-solid fa-paper-plane" aria-hidden="true"></i> 
+        Enviar experiencia
+      </button>
+      
+      <p class="testimonios-form-aviso">
+        <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+        Tu mensaje será revisado antes de publicarse.
+      </p>
+    </form>
+    
+    <div id="testimonio-exito" class="testimonios-exito" style="display:none;">
+      <i class="fa-solid fa-circle-check testimonios-exito-icono"></i>
+      <h3>¡Gracias por compartir!</h3>
+      <p>Tu experiencia fue recibida. La revisaremos para sumarla al portal.</p>
+    </div>
+  </div>
+</section>
+
+</main>
 
   <!-- ======================= PIE ======================= -->
   <footer class="site-footer">

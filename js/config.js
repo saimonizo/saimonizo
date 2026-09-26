@@ -202,6 +202,7 @@ oraculo: {
 },
 datos: {
   // URL de la hoja publicada como TSV (Valores separados por tabulaciones)
-  oraculo: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQAP4_BQodOL28ouphUToFgtKsZqomGg2VKn3c6O93CKoE3MUW62INH3GhWrDPg2_UaADoaaLnsk9pZ/pub?gid=1785436404&single=true&output=tsv'
+  oraculo: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQAP4_BQodOL28ouphUToFgtKsZqomGg2VKn3c6O93CKoE3MUW62INH3GhWrDPg2_UaADoaaLnsk9pZ/pub?gid=1785436404&single=true&output=tsv',
+  testimonios: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQAP4_BQodOL28ouphUToFgtKsZqomGg2VKn3c6O93CKoE3MUW62INH3GhWrDPg2_UaADoaaLnsk9pZ/pub?gid=393757126&single=true&output=tsv'
 }
 };

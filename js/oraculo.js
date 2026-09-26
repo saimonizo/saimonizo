@@ -152,7 +152,7 @@
       return;
     }
 
-    if (boton) { boton.disabled = true; boton.textContent = 'Consultando la matriz…'; }
+    if (boton) { boton.disabled = true; boton.textContent = 'Procesando la frase para tí'; }
 
     var promesa = matrizFrases
       ? Promise.resolve(matrizFrases)
@@ -173,7 +173,7 @@
         }
 
         if (!coincidencia) {
-          mostrarError('error-numero', 'No encontramos esa frecuencia. Probá con otro número.');
+          mostrarError('error-numero', 'No encontramos esa resonancia. Probá con otro número.');
           return;
         }
 
@@ -186,7 +186,7 @@
         estado.desarrolloFase = coincidencia[7] || '';
 
         if (input) input.disabled = true;
-        if (boton) { boton.disabled = true; boton.textContent = 'Frecuencia fijada'; }
+        if (boton) { boton.disabled = true; boton.textContent = 'Frase fijada'; }
 
         setTexto('display-vibracion', 'N° ' + num);
         setTexto('display-frase', '"' + estado.frase + '"');
@@ -222,10 +222,10 @@
      PASO 4 — ELEMENTO DE SIEMBRA
      ====================================================================== */
   var MAPA_ELEMENTOS = {
-    agua:   { titulo: '💧 AGUA · Intuición',     idx: 9 },
-    fuego:  { titulo: '🔥 FUEGO · Impulso',      idx: 10 },
-    tierra: { titulo: '🪵 TIERRA · Sabiduría',   idx: 11 },
-    aire:   { titulo: '💨 AIRE · Integración',   idx: 12 }
+    agua:   { titulo: 'Intuición',     idx: 9 },
+    fuego:  { titulo: 'Impulso',      idx: 10 },
+    tierra: { titulo: 'Sabiduría',   idx: 11 },
+    aire:   { titulo: 'Integración',   idx: 12 }
   };
 
   function iniciarElementos() {
@@ -262,10 +262,10 @@
      PASO 5 — TIEMPO Y REFLEXIÓN
      ====================================================================== */
   var MAPA_TIEMPOS = {
-    noche:     { titulo: '🌌 NOCHE · Profundidad', idx: 14 },
-    atardecer: { titulo: '🌇 ATARDECER · Voluntad', idx: 15 },
-    aurora:    { titulo: '🔮 AURORA · Sentidos',    idx: 16 },
-    amanecer:  { titulo: '🌅 AMANECER · Claridad',  idx: 17 }
+    noche:     { titulo: 'Profundidad', idx: 14 },
+    atardecer: { titulo: 'Voluntad', idx: 15 },
+    aurora:    { titulo: 'Sentidos',    idx: 16 },
+    amanecer:  { titulo: 'Claridad',  idx: 17 }
   };
 
   function iniciarTiempos() {
