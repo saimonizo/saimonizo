@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Activar Pase — Oráculo Evolución</title>
+  <meta name="description" content="Activá tu pase permanente del Oráculo Evolución. Pago por transferencia bancaria o con Mercado Pago.">
+  <meta name="theme-color" content="#07060c">
+
+  <!-- Tipografías -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Iconos -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <!-- Sistema de diseño -->
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <!-- ======================= CABECERA ======================= -->
+  <header class="site-header">
+    <div class="contenedor">
+      <a class="brand" href="index.html" aria-label="Inicio — Simón Pérez">
+        <span class="brand__mark">SP</span>
+        <span class="brand__text">
+          <span class="brand__name">Simón Pérez</span>
+          <span class="brand__sub">Compositor &amp; Productor</span>
+        </span>
+      </a>
+      <nav class="nav" id="nav-principal" aria-label="Navegación principal">
+        <a class="nav__link" href="index.html">Inicio</a>
+        <a class="nav__link" href="portal-evolucion.html">Oráculo</a>
+        <a class="nav__link" href="mi-espacio.html">Mi Espacio</a>
+      </nav>
+      <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-principal">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="seccion">
+    <div class="contenedor">
+
+      <!-- ======================= ENCABEZADO ======================= -->
+      <div class="text-center" style="margin-bottom:3rem" data-reveal>
+        <span class="eyebrow" id="eyebrow-pago">Último paso</span>
+        <h1 class="section-title" id="titulo-pago"
+            style="font-size:clamp(1.8rem,5vw,2.6rem);margin-bottom:.5rem">
+          Elegí tu forma de pago
+        </h1>
+        <p class="section-lead" id="lead-pago">
+          Tu cuenta está lista. Seleccioná el método que prefieras para activar tu acceso permanente al Oráculo.
+        </p>
+      </div>
+
+      <!-- Aviso de cuenta (sesión activa o pendiente) -->
+      <div class="text-center mb-2">
+        <span class="pill hidden" id="pildora-cuenta"></span>
+      </div>
+
+      <!-- Aviso para quien llegó sin cuenta (lo completa pago.js) -->
+      <div id="aviso-sin-cuenta" class="hidden" style="max-width:var(--maxw-narrow);margin:0 auto 2rem"></div>
+
+      <!-- =================================================================
+           BLOQUE: PAGO
+           ================================================================= -->
+      <div id="bloque-pago" class="hidden checkout">
+
+        <!-- -------------------- MÉTODOS -------------------- -->
+        <div>
+          <div class="metodos" id="metodos-pago">
+            <!-- Los métodos se generan desde SP.config.catalogo (js/pago.js) -->
+          </div>
+
+          <!-- Verificación de acceso -->
+          <div class="panel panel--pad" style="margin-top:1.75rem;text-align:center">
+            <h3 style="font-size:.95rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.5rem">
+              ¿Ya hiciste el pago?
+            </h3>
+            <p class="field-hint" style="margin-bottom:1.25rem">
+              Tocá acá y consultamos tu acceso. Si el pago ya se acreditó, te llevamos directo al Oráculo.
+            </p>
+            <button type="button" class="btn btn--ghost btn--block" id="btn-verificar">
+              <i class="fa-solid fa-rotate" aria-hidden="true"></i> Ya pagué, verificar mi acceso
+            </button>
+          </div>
+        </div>
+
+        <!-- -------------------- RESUMEN DE ORDEN -------------------- -->
+        <aside class="orden" data-reveal>
+          <p class="orden__titulo">Resumen de tu orden</p>
+          <dl style="margin:0">
+            <div class="orden__fila">
+              <dt>Pase</dt>
+              <dd id="orden-item">—</dd>
+            </div>
+            <div class="orden__fila">
+              <dt>Tipo</dt>
+              <dd id="orden-tipo">—</dd>
+            </div>
+            <div class="orden__fila">
+              <dt>Cuenta</dt>
+              <dd id="orden-email" style="word-break:break-all">—</dd>
+            </div>
+            <div class="orden__fila">
+              <dt>Método</dt>
+              <dd id="orden-metodo">—</dd>
+            </div>
+            <div class="orden__fila hidden" id="fila-orden-id">
+              <dt>Orden</dt>
+              <dd id="orden-id" style="font-family:var(--font-display)">—</dd>
+            </div>
+          </dl>
+
+          <dl style="margin:0">
+            <div class="orden__total">
+              <dt>Total</dt>
+              <dd id="orden-total">—</dd>
+            </div>
+          </dl>
+
+          <p class="orden__nota">
+            <i class="fa-solid fa-infinity" style="color:var(--violet-soft)" aria-hidden="true"></i>
+            <strong style="color:var(--text)">Acceso permanente:</strong> una vez activado, tu pase no expira.
+            Podés volver al Oráculo las veces que quieras.
+          </p>
+          <p class="orden__nota" style="border-top:0;padding-top:.5rem">
+            <i class="fa-solid fa-shield-halved" style="color:var(--violet-soft)" aria-hidden="true"></i>
+            El acceso se vincula al correo con el que te registraste
+            (<strong style="color:var(--violet-soft)" id="email-usuario">—</strong>).
+          </p>
+        </aside>
+
+      </div>
+
+      <!-- =================================================================
+           BLOQUE: ACCESO YA ACTIVO
+           ================================================================= -->
+      <div id="bloque-activo" class="hidden tarjeta-magica text-center"
+           style="max-width:620px;margin:0 auto">
+        <i class="fa-solid fa-circle-check" style="font-size:2.5rem;color:var(--ok);margin-bottom:1rem" aria-hidden="true"></i>
+        <h2 style="font-size:1.3rem;margin-bottom:.5rem">Tu pase ya está activo</h2>
+        <p class="text-muted" style="margin-bottom:2rem">
+          No hace falta pagar de nuevo. Tu acceso permanente está vigente y te espera.
+        </p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="oraculo.html" id="btn-ir-acceso">
+            <i class="fa-solid fa-play" aria-hidden="true"></i> Entrar al Oráculo
+          </a>
+          <a class="btn btn--ghost" href="mi-espacio.html" id="btn-ir-espacio">
+            <i class="fa-solid fa-user" aria-hidden="true"></i> Ver Mi Espacio
+          </a>
+        </div>
+      </div>
+
+      <!-- =================================================================
+           QUÉ PASA DESPUÉS DEL PAGO
+           ================================================================= -->
+      <div class="panel panel--pad" style="max-width:var(--maxw-narrow);margin:3rem auto 0" data-reveal>
+        <h3 style="font-size:1rem;letter-spacing:.1em;text-align:center;margin-bottom:1.5rem">
+          ¿Qué pasa después del pago?
+        </h3>
+        <ol class="pasos" id="pasos-post-pago">
+          <!-- Lo completa pago.js -->
+        </ol>
+      </div>
+
+      <div class="text-center" style="margin-top:2.5rem">
+        <a href="auth.html" class="btn btn--quiet">
+          <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Volver al inicio de sesión
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ======================= PIE ======================= -->
+  <footer class="site-footer">
+    <div class="contenedor">
+      <div class="site-footer__bottom">
+        <span>© <span data-anio></span> Simón Pérez · Oráculo Evolución</span>
+        <span>La música como herramienta de evolución.</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast-stack" role="status" aria-live="polite"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/sp-api.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/pago.js"></script>
+</body>
+</html>

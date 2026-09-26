@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Evolución — Oráculo · Experiencia inmersiva</title>
+  <meta name="description" content="Portal Evolución: registrate, elegí tu llave de acceso y viví el Oráculo. Una experiencia de música, cortometraje conceptual y autodescubrimiento.">
+  <meta name="theme-color" content="#07060c">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <!-- ======================= CABECERA ======================= -->
+  <header class="site-header">
+    <div class="contenedor">
+      <a class="brand" href="index.html" aria-label="Inicio — Simón Pérez">
+        <span class="brand__mark">SP</span>
+        <span class="brand__text">
+          <span class="brand__name">Simón Pérez</span>
+          <span class="brand__sub">Compositor · Productor</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-principal" aria-label="Abrir menú de navegación">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" id="nav-principal" aria-label="Navegación principal">
+        <a class="nav__link" href="compositor.html">Compositor</a>
+        <a class="nav__link" href="productor.html">Productor</a>
+        <a class="nav__link" href="tienda.html">Tienda</a>
+        <a class="nav__link" href="index.html#sobre-mi">Sobre mí</a>
+        <a class="nav__cta" href="oraculo.html">Ingresar al Oráculo</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ======================= HERO DEL PORTAL ======================= -->
+    <section class="hero" style="min-height:76svh">
+      <div class="hero__aura" aria-hidden="true"></div>
+      <div class="contenedor contenedor--mid text-center">
+        <div data-reveal>
+          <span class="eyebrow">Portal Evolución</span>
+          <h1 class="titulo-artistico" style="font-size:clamp(2.4rem,8vw,4.4rem);margin-bottom:.25em">Evolución</h1>
+          <p style="font-family:var(--font-display);font-size:clamp(1rem,2.4vw,1.25rem);color:var(--text-muted);max-width:52ch;margin:0 auto 2.2rem">
+            La música como herramienta para acompañar un proceso evolutivo.
+          </p>
+          <div class="btn-row">
+            <a class="btn btn--primary" href="auth.html?modo=registro">
+             <i class="fa-solid fa-key" aria-hidden="true"></i> Comenzar mi viaje
+            </a>
+            <a class="btn btn--ghost" href="auth.html">Ya tengo cuenta</a>
+          </div>
+        </div>
+
+        <!-- Aviso si ya hay sesión iniciada (lo completa js/portal.js) -->
+        <div id="aviso-sesion-portal" class="hidden" style="max-width:var(--maxw-narrow);margin:2rem auto 0;text-align:left"></div>
+      </div>
+      <a class="hero__scroll" href="#quees" aria-label="Bajar a Que es">¿Que es?</a>
+    </section>
+
+    <!-- ======================= QUÉ ES ======================= -->
+    <section class="seccion seccion--divided" id="quees">
+      <div class="contenedor contenedor--mid">
+        <span class="eyebrow" data-reveal style="display:block;text-align:center">La experiencia</span>
+        <h2 class="section-title" data-reveal>¿Qué es Oráculo Evolución?</h2>
+
+        <div class="stack" data-reveal style="text-align:center;color:var(--text-muted);margin-bottom:2.5rem">
+          <p>Es un espacio diseñado para reconectar con tu esencia.</p>
+          <p>
+            A través de la unión de la <strong style="color:var(--text)">música + un cortometraje conceptual</strong>,
+            interpretamos las <strong style="color:var(--text)">letras</strong> del álbum
+            <em>Evolución</em> para trabajar en el sentido de vida.
+          </p>
+          <p>
+            No es solo música o video; es un viaje inmersivo que, a través de la magia, el sonido
+            y la conciencia, refleja un punto de partida para ahondar en los procesos de autodescubrimiento.
+          </p>
+        </div>
+
+        <!-- Trailer -->
+        <div class="media-frame" data-reveal>
+          <iframe src="https://www.youtube.com/embed/EQwzeZEq_3w"
+                  title="Trailer Evolución" loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
+                  allowfullscreen></iframe>
+        </div>
+
+        <!-- Pasos del viaje -->
+        <div class="grid-3" style="margin-top:3rem">
+          <article class="ventanita" data-reveal>
+            <span class="ventanita__icon"><i class="fa-solid fa-fingerprint" aria-hidden="true"></i></span>
+            <h3>Registrate</h3>
+            <p>Completá tus datos para recibir tu Bitácora Evolutiva y habilitar tus llaves.</p>
+          </article>
+          <article class="ventanita" data-reveal="120">
+            <span class="ventanita__icon"><i class="fa-solid fa-key" aria-hidden="true"></i></span>
+            <h3>Elegí tu llave</h3>
+            <p>Pase único, acceso libre o transferencia. Vos decidís cuántas veces volver.</p>
+          </article>
+          <article class="ventanita" data-reveal="240">
+            <span class="ventanita__icon"><i class="fa-solid fa-mountain-sun" aria-hidden="true"></i></span>
+            <h3>Viví el viaje</h3>
+            <p>Entrá al Oráculo con tu código y recorré el ritual de principio a fin.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= FASE 1: REGISTRO ======================= -->
+    <section class="seccion seccion--divided" id="registro">
+      <div class="contenedor contenedor--narrow">
+        <span class="eyebrow" data-reveal style="display:block;text-align:center">Fase 1 de 3</span>
+        <h2 class="section-title" data-reveal>Iniciá tu registro</h2>
+        <p class="section-lead" data-reveal>Completá tus datos para recibir tu Bitácora Evolutiva y habilitar tus llaves.</p>
+
+        <div class="panel" data-reveal style="padding:clamp(1.5rem,4vw,2.5rem)">
+          <form id="form-registro" novalidate>
+            <div class="field">
+              <label for="p-nombre">Nombre completo *</label>
+              <input class="control" type="text" id="p-nombre" name="Nombre" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="p-correo">Correo electrónico *</label>
+              <input class="control" type="email" id="p-correo" name="Correo" autocomplete="email" required>
+            </div>
+            <div class="field">
+              <label for="p-whatsapp">WhatsApp (opcional)</label>
+              <input class="control" type="tel" id="p-whatsapp" name="Whatsapp" autocomplete="tel">
+            </div>
+            <div class="field">
+              <label for="p-ubicacion">País / Provincia / Ciudad *</label>
+              <input class="control" type="text" id="p-ubicacion" name="Ubicacion" required>
+            </div>
+
+            <p class="field-hint">Tus datos se usan únicamente para coordinar tu acceso y enviarte tu bitácora. No compartimos tu información.</p>
+
+            <button class="btn btn--primary btn--block" type="submit" id="btn-registro" style="margin-top:1rem">
+              Registrarme y ver opciones de acceso
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= FASE 2: PASARELAS ======================= -->
+    <section class="seccion seccion--divided hidden" id="seccion-pasarelas">
+      <div class="contenedor">
+        <span class="eyebrow" style="display:block;text-align:center">Fase 2 de 3</span>
+        <h2 class="section-title">Elegí tu llave de acceso</h2>
+        <p class="section-lead">Creá tu cuenta y elegí cómo activar tu pase permanente. Al final volvés acá con todo desbloqueado.</p>
+
+        <!-- Las pasarelas se generan desde SP.config.catalogo (js/portal.js).
+             El contenido de abajo es el respaldo si no hay catálogo configurado. -->
+        <div class="grid-3" id="grid-pasarelas">
+          <!-- Pase único -->
+          <article class="pasarela">
+            <h3 style="font-size:1rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.35rem">Pase único</h3>
+            <p class="pasarela__tipo">Viví la experiencia 1 vez</p>
+            <p>Ideal si es un primer acercamiento a mi música. Incluye el cortometraje y tu bitácora de viaje.</p>
+            <a class="btn btn--ghost btn--block" data-link="paseUnico" href="#" target="_blank" rel="noopener">Comprar pase</a>
+          </article>
+
+          <!-- Acceso libre (destacada) -->
+          <article class="pasarela pasarela--featured">
+            <span class="pasarela__badge">Recomendado</span>
+            <h3 style="font-size:1rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.35rem">
+              <i class="fa-solid fa-music" aria-hidden="true"></i> Acceso libre
+            </h3>
+            <p class="pasarela__tipo">Cantidad ilimitada de veces</p>
+            <p>Volvé al Oráculo siempre que necesites reconectar. Tu llave no expira.</p>
+            <a class="btn btn--primary btn--block" data-link="accesoLibre" href="#" target="_blank" rel="noopener">Comprar acceso</a>
+          </article>
+
+          <!-- Transferencia -->
+          <article class="pasarela">
+            <h3 style="font-size:1rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.35rem">Transferencia</h3>
+            <p class="pasarela__tipo">Pesos argentinos (ARS)</p>
+            <p>10% de descuento por transferencia. Coordinamos los datos por chat y te enviamos tu llave.</p>
+            <a class="btn btn--quiet btn--block" data-link="whatsapp"
+               data-msg="Hola Simón, quiero acceder al Oráculo Evolución por transferencia." href="#" target="_blank" rel="noopener">Comunicate</a>
+          </article>
+        </div>
+
+        <p class="text-center" style="margin-top:2.5rem;color:var(--text-dim);font-size:.85rem">
+          ¿Ya tenés tu pase? <a href="auth.html" style="color:var(--violet-soft);text-decoration:underline">Ingresá a tu cuenta</a>
+          y continuá desde Mi Espacio.
+        </p>
+      </div>
+    </section>
+
+    <!-- ======================= EXPERIENCIAS ======================= -->
+    <section class="seccion seccion--divided">
+      <div class="contenedor contenedor--narrow">
+        <span class="eyebrow" data-reveal style="display:block;text-align:center">Voces de distintas evoluciones</span>
+        <h2 class="section-title" data-reveal>Experiencias</h2>
+
+        <div class="carrusel" data-carousel="5500" data-reveal>
+          <div class="carrusel__riel">
+            <div class="carrusel__item">
+              <p class="carrusel__quote">"El cortometraje me dejó en un estado de calma absoluta."</p>
+              <p class="carrusel__author">— Mateo Fernández</p>
+            </div>
+            <div class="carrusel__item">
+              <p class="carrusel__quote">"Una experiencia integral increíble. Volví a ingresar tres veces."</p>
+              <p class="carrusel__author">— Clara Baroni</p>
+            </div>
+            <div class="carrusel__item">
+              <p class="carrusel__quote">"El proceso de autodescubrimiento fue un antes y un después."</p>
+              <p class="carrusel__author">— Juan Ignacio</p>
+            </div>
+          </div>
+          <div class="carrusel__dots" data-carousel-dots style="justify-content:center"></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================= PIE ======================= -->
+  <footer class="site-footer">
+    <div class="contenedor">
+      <div class="site-footer__grid">
+        <div class="site-footer__brand">
+          <h4>Portal Evolución</h4>
+          <p>Un espacio para reconectar con tu esencia a través de la música, el cortometraje y la conciencia.</p>
+        </div>
+
+        <div>
+          <h4>Ecosistema</h4>
+          <ul>
+            <li><a href="compositor.html">Compositor</a></li>
+            <li><a href="productor.html">Productor</a></li>
+            <li><a href="tienda.html">Tienda</a></li>
+            <li><a href="oraculo.html">Ingresar al Oráculo</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Contacto</h4>
+          <ul>
+            <li><a data-link="whatsapp" data-msg="Hola Simón, tengo una consulta sobre el Oráculo." href="#" target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a data-link="instagram" href="#" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a data-link="youtube" href="#" target="_blank" rel="noopener">YouTube</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="site-footer__bottom">
+        <span>© <span data-anio></span> Simón Pérez. Todos los derechos reservados.</span>
+        <span>Hecho con intención y música.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/sp-api.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/portal.js"></script>
+</body>
+</html>

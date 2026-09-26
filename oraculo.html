@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oráculo Evolución — El Viaje</title>
+  <meta name="description" content="El Viaje del Oráculo Evolución: introducí tu llave, elegí tu sintonía, mirá el cortometraje y construí tu mapa personal de evolución.">
+  <meta name="theme-color" content="#07060c">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <!-- ======================= CABECERA ======================= -->
+  <header class="site-header">
+    <div class="contenedor">
+      <a class="brand" href="index.html" aria-label="Inicio — Simón Pérez">
+        <span class="brand__mark">SP</span>
+        <span class="brand__text">
+          <span class="brand__name">Oráculo Evolución</span>
+          <span class="brand__sub">El Viaje</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-principal" aria-label="Abrir menú de navegación">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" id="nav-principal" aria-label="Navegación principal">
+        <a class="nav__link" href="portal-evolucion.html">Portal</a>
+        <a class="nav__link" href="index.html">Volver al inicio</a>
+        <a class="nav__cta" href="index.html">Salir del viaje</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="viaje">
+
+<!-- ============ BARRA DE PROGRESO (actualizada) ============ -->
+<div class="contenedor contenedor--narrow">
+  <div class="ritual-progress" id="ritual-progress" aria-label="Progreso del viaje">
+    <div class="ritual-progress__step is-current" data-step="1">
+      <span class="ritual-progress__dot">I</span> Bienvenida
+    </div>
+    <div class="ritual-progress__step" data-step="2">
+      <span class="ritual-progress__dot">II</span> Sintonía
+    </div>
+    <div class="ritual-progress__step" data-step="3">
+      <span class="ritual-progress__dot">III</span> Corto
+    </div>
+    <div class="ritual-progress__step" data-step="4">
+      <span class="ritual-progress__dot">IV</span> Mapa
+    </div>
+    <div class="ritual-progress__step" data-step="5">
+      <span class="ritual-progress__dot">V</span> Cosecha
+    </div>
+  </div>
+</div>
+
+<!-- ============ PASO 1: BIENVENIDA (NUEVO) ============ -->
+<section id="paso-1" class="pantalla is-active text-center">
+  <div class="contenedor contenedor--narrow"></div>
+  <div style="max-width: 620px; margin: 0 auto;">
+    
+    <!-- Sello místico -->
+    <div style="margin-bottom: 2rem;" data-reveal>
+      <span class="sigil" style="font-size: 3rem; display: inline-block; margin-bottom: 1rem;">✦</span>
+      <span class="eyebrow" style="display: block;">Paso I</span>
+    </div>
+    
+    <!-- Saludo personalizado -->
+    <h1 class="titulo-artistico" data-reveal style="font-size: clamp(1.8rem, 5vw, 2.8rem); margin-bottom: 0.5rem;">
+      Bienvenido/a, <span id="nombre-viajero" style="color: var(--violet-soft); display: block; margin-top: 0.25em;">Viajero/a</span>
+    </h1>
+    
+    <!-- Frase mística -->
+    <p class="section-lead" data-reveal style="font-family: var(--font-display); font-style: italic; color: #fff; max-width: 48ch; margin: 0 auto 2rem;">
+      Tu energía ha sido reconocida. El portal se abre para vos.
+    </p>
+    
+    <!-- Descripción del viaje -->
+    <div class="tarjeta-magica" data-reveal style="text-align: left; padding: 2rem; margin-bottom: 2.5rem;">
+      <p style="color: var(--text-muted); margin-bottom: 1.25rem; line-height: 1.7;">
+        Estás a punto de recorrer un viaje guiado donde la música, el cortometraje y la conciencia se encuentran para acompañarte en un proceso de autodescubrimiento.
+      </p>
+      <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 1.5rem;">
+        No hay apuro. Cada paso está diseñado para ser vivido con intención. Cuando estés listo/a, el viaje comenzará.
+      </p>
+      
+      <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.08); margin: 1.5rem 0;">
+      
+      <p style="font-size: 0.85rem; color: var(--text-dim); letter-spacing: 0.08em;">
+        <i class="fa-solid fa-compass" style="color: var(--violet-soft);" aria-hidden="true"></i>
+        <strong style="color: var(--text);"> Lo que vas a vivir:</strong>
+      </p>
+      <ul style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.75rem; padding-left: 1.25rem; line-height: 1.9;">
+        <li>Elegir tu sintonía inicial</li>
+        <li>Disfrutar del cortometraje conceptual</li>
+        <li>Construir tu mapa personal de evolución</li>
+        <li>Recibir tu bitácora por correo</li>
+      </ul>
+    </div>
+    
+    <!-- Botón para iniciar -->
+    <div data-reveal>
+      <button class="btn btn--primary btn--block" type="button" id="btn-iniciar-viaje" data-ir="2" style="max-width: 360px; margin: 0 auto; font-size: 1.05rem; padding: 1rem 2rem;">
+        <i class="fa-solid fa-wand-magic-sparkles" type="button" data-ir="2" aria-hidden="true"></i> Iniciar el viaje
+      </button>
+      
+      <p class="field-hint" style="margin-top: 1.5rem; font-size: 0.8rem;">
+        <i class="fa-solid fa-info-circle" aria-hidden="true"></i>
+        Te recomendamos usar auriculares y buscar un espacio tranquilo.
+      </p>
+    </div>
+    
+  </div>
+</section>
+
+      <!-- ============ PASO 2: Sintonía ============ -->
+      <section id="paso-2" class="pantalla text-center">
+        <div class="contenedor contenedor--narrow"></div>
+        <span class="eyebrow">Paso II</span>
+        <h1 class="section-title" style="font-size:clamp(1.6rem,4.5vw,2.3rem)">Elegí tu sintonía</h1>
+        <p class="section-lead">Introducí un número del <span id="rango-min">1</span> al <span id="rango-max">70</span> para revelar tu frase.</p>
+
+        <form id="form-numero" novalidate>
+          <div class="field">
+            <label for="numero-elegido" class="visually-hidden">Número de sintonía</label>
+            <input class="control control--num" type="number" id="numero-elegido"
+                   min="1" max="70" placeholder="—" inputmode="numeric" required>
+          </div>
+          <div class="field-error" id="error-numero" role="alert"></div>
+          <button class="btn btn--primary" type="submit" id="btn-numero">Descubrir frase</button>
+        </form>
+
+        <!-- Tarjeta revelada -->
+        <div class="tarjeta-magica revelado" id="frase-p2" style="margin-top:2.75rem" hidden>
+          <span class="eyebrow" style="color:var(--violet-soft)">Vibración <span id="display-vibracion">—</span></span>
+          <h2 id="display-frase" style="font-family:var(--font-display);font-style:italic;font-size:clamp(1.15rem,3.4vw,1.6rem);line-height:1.55;color:#fff;margin-bottom:1.5rem">—</h2>
+          <p class="text-dim" style="font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:2rem">Canción: <span id="display-cancion" style="color:var(--violet-soft)">—</span></p>
+          <div class="btn-row">
+            <button class="btn btn--quiet" type="button" data-ir="1">
+              <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Salir
+            </button>
+            <button class="btn btn--primary" type="button" data-ir="3">
+              Continuar <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PASO 3: Cortometraje ============ -->
+      <section id="paso-3" class="pantalla">
+        <div class="contenedor contenedor--narrow"></div>
+        <div class="text-center">
+          <span class="eyebrow">Paso III</span>
+          <h1 class="section-title" style="font-size:clamp(1.6rem,4.5vw,2.3rem)">El cortometraje</h1>
+          <p class="section-lead">Disfrutá del audiovisual y conectá con la creación, para luego profundizar en tu proceso evolutivo.</p>
+        </div>
+
+        <div class="media-frame" id="marco-cortometraje">
+          <iframe id="iframe-cortometraje"
+                  src="https://www.youtube-nocookie.com/embed/8WrmhWBfZL4?rel=0&amp;modestbranding=1"
+                  title="Cortometraje Evolución" loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
+                  allowfullscreen></iframe>
+        </div>
+
+        <div class="btn-row" style="margin-top:2.5rem">
+          <button class="btn btn--quiet" type="button" data-ir="2">
+            <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Cambiar número
+          </button>
+          <button class="btn btn--primary" type="button" data-ir="4">
+            Construir mapa <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- ============ PASO 4: Mapa ============ -->
+      <section id="paso-4" class="pantalla">
+        <div class="contenedor contenedor--narrow"></div>
+        <div class="text-center">
+          <span class="eyebrow">Paso IV</span>
+          <h1 class="section-title" style="font-size:clamp(1.6rem,4.5vw,2.3rem)">Vamos a construir</h1>
+          <p class="section-lead">Conectando con tu presente.</p>
+        </div>
+
+        <!-- Contexto asignado -->
+        <div class="bloque-contexto" data-reveal>
+          <p class="label-block" style="margin-bottom:.5rem">Tu contexto asignado</p>
+          <div class="bloque-contexto__fila"><strong>Número</strong><span id="ctx-numero">—</span></div>
+          <div class="bloque-contexto__fila"><strong>Canción</strong><span id="ctx-cancion">—</span></div>
+          <div class="bloque-contexto__fila"><strong>Frase</strong><span id="ctx-frase" class="text-italic">—</span></div>
+          <div class="bloque-contexto__fila"><strong>Sentido</strong><span id="ctx-sentido" class="text-muted">—</span></div>
+        </div>
+
+        <!-- Fase -->
+        <div class="tarjeta-magica" style="margin-bottom:2.5rem" data-reveal>
+          <h2 id="ctx-fase" style="font-size:1.25rem;margin-bottom:.75rem">—</h2>
+          <p id="ctx-desarrollo-fase" class="text-muted" style="margin-bottom:1.5rem">—</p>
+          <hr>
+          <p style="color:var(--text-muted)">
+            <i class="fa-solid fa-seedling" style="color:var(--ok)" aria-hidden="true"></i>
+            <strong style="color:var(--text)">Para este presente vamos a conectar con:</strong><br>
+            <span id="ctx-conexion-siembra" style="color:var(--violet-soft)">—</span>
+          </p>
+        </div>
+
+        <!-- Elementos de siembra -->
+        <div style="margin-bottom:2.5rem" data-reveal>
+          <p class="label-block text-center">Elegí tu elemento de siembra para revelar tu oración de afirmación</p>
+          <div class="choice-grid">
+            <button class="choice" type="button" data-elemento="agua">💧 Agua</button>
+            <button class="choice" type="button" data-elemento="fuego">🔥 Fuego</button>
+            <button class="choice" type="button" data-elemento="tierra">🪵 Tierra</button>
+            <button class="choice" type="button" data-elemento="aire">💨 Aire</button>
+          </div>
+
+          <div class="tarjeta-magica revelado" id="revela-elemento" style="margin-top:1.5rem" hidden>
+            <h3 id="elemento-titulo" style="font-size:1rem;color:var(--violet-soft);margin-bottom:.75rem">Elemento</h3>
+            <p id="elemento-texto" class="text-italic" style="color:#fff">—</p>
+          </div>
+        </div>
+
+        <!-- Álbum -->
+        <div class="bloque-album" data-reveal>
+          <p style="margin-bottom:1rem"><i class="fa-solid fa-lightbulb" style="color:var(--gold)" aria-hidden="true"></i> <strong>PD:</strong> Escuchá el álbum completo.</p>
+          <a class="btn btn--ghost btn--sm" id="link-album" href="#" target="_blank" rel="noopener">
+            <i class="fa-brands fa-youtube" aria-hidden="true"></i> Escuchar álbum
+          </a>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn--quiet" type="button" data-ir="3">
+            <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Cortometraje
+          </button>
+          <button class="btn btn--primary" type="button" data-ir="5">
+            Vinculación <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- ============ PASO 5: Espacio para vincularse ============ -->
+      <section id="paso-5" class="pantalla">
+        <div class="contenedor contenedor--narrow"></div>
+        <div class="text-center">
+          <span class="eyebrow">Paso V</span>
+          <h1 class="section-title" style="font-size:clamp(1.6rem,4.5vw,2.3rem)">Espacio para vincularse</h1>
+          <p class="section-lead">Reconocer este momento es el primer paso para que la magia suceda.</p>
+        </div>
+
+        <!-- Tiempos -->
+        <div style="margin-bottom:2.5rem" data-reveal>
+          <p class="label-block text-center">¿En qué tiempo resonás para ubicar este proceso?</p>
+          <div class="choice-grid">
+            <button class="choice" type="button" data-tiempo="noche">🌌 Noche</button>
+            <button class="choice" type="button" data-tiempo="atardecer">🌇 Atardecer</button>
+            <button class="choice" type="button" data-tiempo="aurora">🔮 Aurora</button>
+            <button class="choice" type="button" data-tiempo="amanecer">🌅 Amanecer</button>
+          </div>
+
+          <div class="tarjeta-magica revelado" id="revela-tiempo" style="margin-top:1.5rem" hidden>
+            <h3 id="tiempo-titulo" style="font-size:1rem;color:var(--violet-soft);margin-bottom:.75rem">Tiempo</h3>
+            <p id="tiempo-texto" class="text-italic" style="color:#fff">—</p>
+          </div>
+        </div>
+
+        <!-- Reflexión -->
+        <div style="margin-bottom:2.75rem" data-reveal>
+          <label class="label-block" for="reflexion-final">Describí tu sentir en la resonancia de la evolución de hoy</label>
+          <textarea class="control" id="reflexion-final" rows="6"
+                    placeholder="Escribí acá tu reflexión…"></textarea>
+          <p class="field-hint">
+            Es valioso reconocer este momento para identificar qué necesitás para que la magia suceda,
+            y luego recapitular sobre una base de conocimiento en la siguiente evolución.
+          </p>
+          <div class="field-error" id="error-reflexion" role="alert"></div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn--quiet" type="button" data-ir="4">
+            <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Revisar mapa
+          </button>
+          <button class="btn btn--primary" type="button" id="btn-finalizar">
+            Finalizar viaje <i class="fa-solid fa-check" aria-hidden="true"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- ============ CIERRE ============ -->
+      <section id="paso-final" class="pantalla text-center">
+        <div class="tarjeta-magica" style="max-width:560px;margin:0 auto">
+          <span class="eyebrow" style="color:var(--violet-soft)">Viaje concluido</span>
+          <h1 class="titulo-artistico" style="font-size:clamp(1.7rem,5vw,2.5rem);margin-bottom:.4em">Tu mapa está sembrado</h1>
+          <p id="cierre-mensaje" class="text-muted" style="margin-bottom:2rem">
+            Gracias por recorrer este viaje. Tu bitácora fue cosechada y llegará a tu correo.
+          </p>
+          <div class="btn-row">
+            <a class="btn btn--primary" href="index.html">Volver al inicio</a>
+            <a class="btn btn--ghost" href="tienda.html">Ver la tienda</a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ======================= PIE ======================= -->
+  <footer class="site-footer" style="margin-top:3rem">
+    <div class="contenedor">
+      <div class="site-footer__bottom" style="border-top:0;padding-top:0">
+        <span>© <span data-anio></span> Simón Pérez · Oráculo Evolución</span>
+        <span>La música como herramienta de evolución.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/sp-api.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/oraculo.js"></script>
+</body>
+</html>

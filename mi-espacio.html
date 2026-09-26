@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Espacio — Simón Pérez</title>
+  <meta name="description" content="Tu espacio personal de evolución: accedé a las experiencias que desbloqueaste y sumá nuevas creaciones.">
+  <meta name="theme-color" content="#07060c">
+
+  <!-- Tipografías -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Iconos -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <!-- Sistema de diseño -->
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <!-- ======================= CABECERA ======================= -->
+  <header class="site-header">
+    <div class="contenedor">
+      <a class="brand" href="index.html" aria-label="Inicio — Simón Pérez">
+        <span class="brand__mark">SP</span>
+        <span class="brand__text">
+          <span class="brand__name">Simón Pérez</span>
+          <span class="brand__sub">Mi Espacio</span>
+        </span>
+      </a>
+
+      <nav class="nav" id="nav-principal" aria-label="Navegación principal">
+        <a class="nav__link" href="index.html">Inicio</a>
+        <a class="nav__link" href="oraculo.html">Oráculo</a>
+        <a class="nav__link" href="tienda.html">Tienda</a>
+      </nav>
+
+      <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-principal">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="seccion" style="padding-top:calc(var(--header-h) + 3.5rem)">
+    <div class="contenedor contenedor--mid">
+
+      <!-- ======================= SALUDO Y ESTADO ======================= -->
+      <header class="text-center mb-3" data-reveal>
+        <span class="eyebrow">Bienvenido/a de vuelta</span>
+        <h1 class="section-title" style="font-size:clamp(1.8rem,5vw,2.8rem);margin-bottom:.5rem">
+          Hola, <span id="nombre-usuario" style="color:var(--violet-soft)">Viajero/a</span>
+        </h1>
+        <p class="section-lead">Aquí residen las experiencias que has desbloqueado.</p>
+      </header>
+
+      <!-- Barra de cuenta: correo, píldoras de estado y salir -->
+      <div class="cuenta-barra" data-reveal>
+        <div class="cuenta-barra__meta">
+          <span class="pill pill--muted">
+            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+            <span id="email-usuario">—</span>
+          </span>
+          <span id="pildoras-cuenta" style="display:flex;gap:.5rem;flex-wrap:wrap"></span>
+        </div>
+        <button class="btn btn--quiet btn--sm" type="button" data-cerrar-sesion>
+          <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i> Cerrar sesión
+        </button>
+      </div>
+
+      <!-- Aviso accionable si el pase todavía no está activo (lo completa mi-espacio.js) -->
+      <div id="aviso-estado" class="hidden" style="margin-bottom:2.5rem"></div>
+
+      <!-- ======================= EXPERIENCIAS ======================= -->
+      <section aria-labelledby="titulo-experiencias">
+        <h2 id="titulo-experiencias" class="sr-only visually-hidden">Mis experiencias</h2>
+
+        <!-- Estado de carga -->
+        <div id="estado-carga" class="text-center" style="padding:3rem">
+          <i class="fa-solid fa-circle-notch fa-spin" style="font-size:2rem;color:var(--violet-soft)" aria-hidden="true"></i>
+          <p style="margin-top:1rem;color:var(--text-muted)">Cargando tus experiencias…</p>
+        </div>
+
+        <!-- Grid de experiencias -->
+        <div id="grid-experiencias" class="stack" hidden></div>
+
+        <!-- Aviso si aún no hay nada desbloqueado -->
+        <div id="mensaje-vacio" class="tarjeta-magica tarjeta-magica--tight hidden">
+          <i class="fa-solid fa-compass" style="font-size:2.5rem;color:var(--violet-soft);margin-bottom:1rem" aria-hidden="true"></i>
+          <h3 style="margin-bottom:.75rem">Tu espacio está esperando</h3>
+          <p style="color:var(--text-muted);margin-bottom:1.5rem">
+            Aún no desbloqueaste ninguna experiencia. Comenzá tu viaje con el Oráculo Evolución.
+          </p>
+          <a class="btn btn--primary" href="portal-evolucion.html">
+            <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i> Descubrir el Oráculo
+          </a>
+        </div>
+
+        <p class="field-hint text-center hidden" id="nota-origen" style="margin-top:1.5rem" role="status"></p>
+      </section>
+
+      <!-- ======================= SUMAR EXPERIENCIAS ======================= -->
+      <section class="seccion--divided" style="margin-top:4rem;padding-top:3rem" aria-labelledby="titulo-catalogo">
+        <div class="text-center mb-2" data-reveal>
+          <span class="eyebrow">Seguir creciendo</span>
+          <h2 class="section-title" id="titulo-catalogo" style="font-size:clamp(1.4rem,4vw,2rem)">
+            Sumá nuevas experiencias
+          </h2>
+          <p class="section-lead">
+            Pases, cursos y objetos que acompañan tu proceso. Todo se activa sobre esta misma cuenta.
+          </p>
+        </div>
+
+        <div id="grid-catalogo" class="grid-auto" hidden></div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ======================= PIE ======================= -->
+  <footer class="site-footer">
+    <div class="contenedor">
+      <div class="site-footer__grid">
+        <div class="site-footer__brand">
+          <h4>Mi Espacio</h4>
+          <p>Tu bitácora evolutiva vive acá. Cada viaje queda registrado para que puedas recapitular sobre una base de conocimiento.</p>
+        </div>
+
+        <div>
+          <h4>Ecosistema</h4>
+          <ul>
+            <li><a href="compositor.html">Compositor</a></li>
+            <li><a href="productor.html">Productor</a></li>
+            <li><a href="tienda.html">Tienda</a></li>
+            <li><a href="portal-evolucion.html">Oráculo Evolución</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Contacto</h4>
+          <ul>
+            <li><a data-link="whatsapp" data-msg="Hola Simón, tengo una consulta sobre mi cuenta." href="#" target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a data-link="instagram" href="#" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a data-link="donacion" href="#" target="_blank" rel="noopener">Donaciones</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="site-footer__bottom">
+        <span>© <span data-anio></span> Simón Pérez · Mi Espacio</span>
+        <span>La música como herramienta de evolución.</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast-stack" role="status" aria-live="polite"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/sp-api.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/mi-espacio.js"></script>
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ingreso — Oráculo Evolución</title>
+  <meta name="description" content="Ingresá o creá tu cuenta del Oráculo Evolución. Activá tu pase permanente y accedé a la experiencia cuando quieras.">
+  <meta name="theme-color" content="#07060c">
+
+  <!-- Tipografías -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Iconos -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <!-- Sistema de diseño -->
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <!-- ======================= CABECERA ======================= -->
+  <header class="site-header">
+    <div class="contenedor">
+      <a class="brand" href="index.html" aria-label="Inicio — Simón Pérez">
+        <span class="brand__mark">SP</span>
+        <span class="brand__text">
+          <span class="brand__name">Simón Pérez</span>
+          <span class="brand__sub">Compositor &amp; Productor</span>
+        </span>
+      </a>
+      <nav class="nav" id="nav-principal" aria-label="Navegación principal">
+        <a class="nav__link" href="portal-evolucion.html">Oráculo</a>
+        <a class="nav__link" href="tienda.html">Tienda</a>
+        <a class="nav__link" href="index.html">Inicio</a>
+      </nav>
+      <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-principal">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="auth-container auth-container--wide">
+
+    <!-- ------------------- COLUMNA DE CONFIANZA ------------------- -->
+    <aside class="auth-aside">
+      <div class="auth-seal" aria-hidden="true">✦</div>
+      <span class="eyebrow">Oráculo Evolución</span>
+      <h2>Tu espacio de evolución</h2>
+      <p>
+        Una sola cuenta para toda la experiencia: el viaje del Oráculo,
+        tu bitácora evolutiva y cada nueva obra que se sume al ecosistema.
+      </p>
+
+      <ul class="auth-benefits">
+        <li><i class="fa-solid fa-circle" aria-hidden="true"></i>
+          <span><strong>Llave permanente.</strong> Entrás cuantas veces quieras, sin vencimiento.</span></li>
+        <li><i class="fa-solid fa-circle" aria-hidden="true"></i>
+          <span><strong>Tu bitácora guardada.</strong> Cada viaje queda registrado y te llega por correo.</span></li>
+        <li><i class="fa-solid fa-circle" aria-hidden="true"></i>
+          <span><strong>Compras en un solo lugar.</strong> Pases, cursos y objetos desde tu cuenta.</span></li>
+      </ul>
+
+      <p class="field-hint" style="text-align:left">
+        <i class="fa-solid fa-lock" aria-hidden="true"></i>
+        Tus datos se usan únicamente para darte acceso y enviarte tu bitácora. No compartimos tu información.
+      </p>
+    </aside>
+
+    <!-- ------------------- COLUMNA DEL FORMULARIO ------------------- -->
+    <div>
+      <!-- Aviso si ya hay una sesión abierta (lo completa auth.js) -->
+      <div id="aviso-sesion" class="hidden" style="margin-bottom:1.75rem"></div>
+
+      <div class="auth-header">
+        <h1>Acceso al Ecosistema</h1>
+        <p class="subtitle">Ingresá tus datos para continuar tu viaje.</p>
+      </div>
+
+      <div class="auth-tabs" role="tablist" aria-label="Ingresar o registrarme">
+        <button class="auth-tab is-active" type="button" data-target="form-login" role="tab"
+                aria-selected="true" aria-controls="form-login" id="tab-login">
+          <i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i> Ingresar
+        </button>
+        <button class="auth-tab" type="button" data-target="form-registro" role="tab"
+                aria-selected="false" aria-controls="form-registro" id="tab-registro">
+          <i class="fa-solid fa-user-plus" aria-hidden="true"></i> Registrarme
+        </button>
+      </div>
+
+      <!-- ===================== FORMULARIO: INGRESO ===================== -->
+      <form id="form-login" class="auth-form is-active" role="tabpanel" aria-labelledby="tab-login" novalidate>
+        <div class="panel">
+          <div class="field">
+            <label for="login-email">Correo electrónico</label>
+            <input type="email" id="login-email" name="email" class="control"
+                   placeholder="tu@email.com" autocomplete="email" required>
+          </div>
+
+          <div class="field">
+            <label for="login-password">Contraseña</label>
+            <div class="field-password">
+              <input type="password" id="login-password" name="password" class="control"
+                     placeholder="••••••••" autocomplete="current-password" required>
+              <button type="button" class="field-password__toggle" data-para="login-password"
+                      aria-label="Mostrar contraseña" aria-pressed="false">
+                <i class="fa-solid fa-eye" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="auth-links">
+            <label class="check-line" for="login-recordar">
+              <input type="checkbox" id="login-recordar" checked>
+              <span>Recordarme en este dispositivo</span>
+            </label>
+            <button type="button" class="link-quiet" id="btn-abrir-recuperar"
+                    aria-expanded="false" aria-controls="form-recuperar"
+                    style="background:none;border:0;padding:0;font:inherit;cursor:pointer">
+              Olvidé mi contraseña
+            </button>
+          </div>
+
+          <div class="field-error" id="error-login" role="alert" aria-live="polite"></div>
+
+          <button type="submit" id="btn-login" class="btn btn--primary btn--block">
+            <i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i> Ingresar al viaje
+          </button>
+
+          <div class="auth-trust">
+            <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+            <span>Conexión segura con nuestra base de datos. Tu contraseña se guarda cifrada y nunca se comparte.</span>
+          </div>
+        </div>
+      </form>
+
+      <!-- Recuperación de contraseña (su propio formulario, oculto hasta pedirlo) -->
+      <form id="form-recuperar" class="panel hidden" style="margin-top:1.25rem" novalidate>
+        <h3 style="font-size:1rem;letter-spacing:.1em">Recuperar acceso</h3>
+        <p class="field-hint" style="margin-bottom:1.1rem">
+          Escribí el correo con el que te registraste y te enviamos un enlace para crear una nueva contraseña.
+        </p>
+        <div class="field">
+          <label for="rec-email">Correo electrónico</label>
+          <input type="email" id="rec-email" class="control" placeholder="tu@email.com" autocomplete="email">
+        </div>
+        <div class="field-error" id="error-recuperar" role="alert"></div>
+        <div class="field-hint" id="ok-recuperar" style="color:var(--ok)" role="status"></div>
+        <button type="submit" class="btn btn--ghost btn--block" id="btn-recuperar" style="margin-top:.75rem">
+          <i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Enviar enlace de recuperación
+        </button>
+      </form>
+
+      <!-- ===================== FORMULARIO: REGISTRO ===================== -->
+      <form id="form-registro" class="auth-form" role="tabpanel" aria-labelledby="tab-registro" novalidate>
+        <div class="panel">
+          <div class="field">
+            <label for="reg-nombre">Nombre completo</label>
+            <input type="text" id="reg-nombre" name="nombre" class="control"
+                   placeholder="Tu nombre" autocomplete="name" required>
+          </div>
+
+          <div class="field">
+            <label for="reg-email">Correo electrónico</label>
+            <input type="email" id="reg-email" name="email" class="control"
+                   placeholder="tu@email.com" autocomplete="email" required>
+            <p class="field-hint">Ahí te va a llegar tu bitácora evolutiva.</p>
+          </div>
+
+          <div class="field">
+            <label for="reg-password">Contraseña</label>
+            <div class="field-password">
+              <input type="password" id="reg-password" name="password" class="control"
+                     placeholder="Crea una contraseña segura" autocomplete="new-password" required>
+              <button type="button" class="field-password__toggle" data-para="reg-password"
+                      aria-label="Mostrar contraseña" aria-pressed="false">
+                <i class="fa-solid fa-eye" aria-hidden="true"></i>
+              </button>
+            </div>
+            <div class="pass-meter" id="medidor-password" aria-hidden="true">
+              <span class="pass-meter__bar"></span>
+              <span class="pass-meter__bar"></span>
+              <span class="pass-meter__bar"></span>
+              <span class="pass-meter__bar"></span>
+            </div>
+            <p class="field-hint">Mínimo 6 caracteres. <span id="medidor-texto" style="font-weight:600"></span></p>
+          </div>
+
+          <div class="field">
+            <label for="reg-password2">Repetí tu contraseña</label>
+            <div class="field-password">
+              <input type="password" id="reg-password2" name="password2" class="control"
+                     placeholder="Repetí la contraseña" autocomplete="new-password">
+              <button type="button" class="field-password__toggle" data-para="reg-password2"
+                      aria-label="Mostrar contraseña" aria-pressed="false">
+                <i class="fa-solid fa-eye" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="grid-pair">
+            <div class="field">
+              <label for="reg-whatsapp">WhatsApp <span class="text-dim">(opcional)</span></label>
+              <input type="tel" id="reg-whatsapp" name="whatsapp" class="control"
+                     placeholder="+54 9 11…" autocomplete="tel">
+            </div>
+            <div class="field">
+              <label for="reg-ubicacion">País / Ciudad <span class="text-dim">(opcional)</span></label>
+              <input type="text" id="reg-ubicacion" name="ubicacion" class="control"
+                     placeholder="Ej: Córdoba, Argentina">
+            </div>
+          </div>
+
+          <label class="check-line" for="reg-terminos" style="margin-bottom:1.1rem">
+            <input type="checkbox" id="reg-terminos" checked>
+            <span>Acepto recibir mi bitácora evolutiva y novedades del ecosistema por correo.</span>
+          </label>
+
+          <div class="field-error" id="error-registro" role="alert" aria-live="polite"></div>
+
+          <button type="submit" id="btn-registro" class="btn btn--primary btn--block">
+            <i class="fa-solid fa-user-plus" aria-hidden="true"></i> Crear mi espacio y elegir pase
+          </button>
+
+          <div class="auth-trust">
+            <i class="fa-solid fa-infinity" aria-hidden="true"></i>
+            <span>El siguiente paso es elegir cómo activar tu <strong>pase permanente</strong>. Podés pagar por transferencia o con Mercado Pago.</span>
+          </div>
+        </div>
+      </form>
+
+      <p class="auth-footer">
+        ¿Ya tenés tu pase activo? <a href="oraculo.html">Entrá directo al Oráculo</a>
+      </p>
+    </div>
+
+  </main>
+
+  <!-- ======================= PIE ======================= -->
+  <footer class="site-footer site-footer--bare">
+    <div class="contenedor">
+      <div class="site-footer__bottom">
+        <span>© <span data-anio></span> Simón Pérez · Oráculo Evolución</span>
+        <span>La música como herramienta de evolución.</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast-stack" role="status" aria-live="polite"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/sp-api.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

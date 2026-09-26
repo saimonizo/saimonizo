@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simón Pérez — Tienda</title>
+  <meta name="description" content="Cronología de las creaciones musicales de Simón Pérez: Semillas, Saltar, Evolución, Mudarse y las obras que vienen. El 'para qué' detrás de cada canción.">
+  <meta name="theme-color" content="#07060c">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <!-- ======================= CABECERA ======================= -->
+  <header class="site-header">
+    <div class="contenedor">
+      <a class="brand" href="index.html" aria-label="Inicio — Simón Pérez">
+        <span class="brand__text">
+          <span class="brand__name">Simón Pérez</span>
+          <span class="brand__sub">Compositor · Productor</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-principal" aria-label="Abrir menú de navegación">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" id="nav-principal" aria-label="Navegación principal">
+        <a class="nav__link" href="compositor.html">Compositor</a>
+        <a class="nav__link" href="productor.html">Productor</a>
+        <a class="nav__link" href="tienda.html">Tienda</a>
+        <a class="nav__link" href="index.html#sobre-mi">Sobre mí</a>
+        <a class="nav__cta" href="portal-evolucion.html">Oráculo Evolución</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="seccion" id="acompanar">
+      <div class="contenedor contenedor--narrow text-center">
+        <div class="tarjeta-magica" data-reveal>
+          <span class="eyebrow" style="color:var(--violet-soft)">En construcción</span>
+          <h2 class="section-title" style="font-size:clamp(1.4rem,4vw,2rem)">PRÓXIMAMENTE</h2>
+          <p style="color:var(--text-muted);max-width:52ch;margin:0 auto 2.2rem">
+          Estamos preparando algo especial para vos ♥
+          </p>
+          <div class="btn-row">
+            <a class="btn btn--gold" data-link="donacion" href="#" target="_blank" rel="noopener">
+              <i class="fa-solid fa-heart" aria-hidden="true"></i> Donar para colaborar
+            </a>
+            <a class="btn btn--ghost" href="portal-evolucion.html">Vivir el Oráculo</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+<!-- ======================= PIE ======================= -->
+  <footer class="site-footer">
+    <div class="contenedor">
+      <div class="site-footer__grid">
+        <div class="site-footer__brand">
+          <h4>Simón Pérez</h4>
+          <p>Compositor &amp; Productor musical. Transformo ideas en música y acompaño procesos creativos.</p>
+          <div class="social" style="margin-top:1.4rem;justify-content:flex-start">
+            <a data-link="instagram" href="#" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+            <a data-link="youtube" href="#" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
+            <a data-link="spotify" href="#" target="_blank" rel="noopener" aria-label="Spotify"><i class="fa-brands fa-spotify" aria-hidden="true"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4>Ecosistema</h4>
+          <ul>
+            <li><a href="compositor.html">Compositor</a></li>
+            <li><a href="productor.html">Productor</a></li>
+            <li><a href="tienda.html">Tienda</a></li>
+            <li><a href="portal-evolucion.html">Oráculo Evolución</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Contacto</h4>
+          <ul>
+            <li><a data-link="whatsapp" data-msg="Hola Simón, escuché tu música y me gustaría hablar." href="#" target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a data-link="instagram" href="#" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a data-link="donacion" href="#" target="_blank" rel="noopener">Donaciones</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="site-footer__bottom">
+        <span>© <span data-anio></span> Simón Pérez. Todos los derechos reservados.</span>
+        <span>Hecho con intención y música.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/sp-api.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
