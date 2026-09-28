@@ -106,17 +106,15 @@
             </div>
           </div>
 
-          <div class="auth-links">
-            <label class="check-line" for="login-recordar">
-              <input type="checkbox" id="login-recordar" checked>
-              <span>Recordarme en este dispositivo</span>
-            </label>
-            <button type="button" class="link-quiet" id="btn-abrir-recuperar"
-                    aria-expanded="false" aria-controls="form-recuperar"
-                    style="background:none;border:0;padding:0;font:inherit;cursor:pointer">
-            <a href="auth.html?modo=recuperar" style="color:var(--violet-soft);font-size:0.82rem;text-decoration:underline;text-underline-offset:3px;">Olvidé mi contraseña</a>
-            </button>
-          </div>
+<div class="auth-links">
+  <label class="check-line" for="login-recordar">
+    <input type="checkbox" id="login-recordar" checked>
+    <span>Recordarme en este dispositivo</span>
+  </label>
+  <a href="auth.html?modo=recuperar" class="link-quiet" style="font-size:0.82rem;">
+    Olvidé mi contraseña
+  </a>
+</div>
 
           <div class="field-error" id="error-login" role="alert" aria-live="polite"></div>
 
