@@ -1,44 +1,36 @@
 /* ==========================================================================
-   AUTH.JS — INGRESO, REGISTRO Y RECUPERACIÓN
-   --------------------------------------------------------------------------
-   Un solo flujo, sellado y predecible:
-
-     1. Pestañas Ingresar / Registrarme (con estado claro y accesible)
-     2. Login     → guarda la sesión (con "Recordarme") y decide el destino
-                    · cuenta ACTIVA   → Oráculo
-                    · cuenta PENDIENTE → pago (a elegir su pase)
-     3. Registro  → crea la cuenta y lleva al pago
-     4. Recuperar → envía la clave de recuperación por correo
-     5. Volver    → ?volver=... regresa al destino que pidió la página
-
-   Toda la comunicación con Google Sheets + Apps Script pasa por SP.api.
-   ========================================================================== */
+AUTH.JS — INGRESO, REGISTRO Y RECUPERACIÓN
+Un solo flujo, sellado y predecible:
+ 1. Pestañas Ingresar / Registrarme (con estado claro y accesible)
+ 2. Login     → guarda la sesión (con "Recordarme") y decide el destino
+                · cuenta ACTIVA   → Oráculo
+                · cuenta PENDIENTE → pago (a elegir su pase)
+ 3. Registro  → crea la cuenta y lleva al pago
+ 4. Recuperar → envía la clave de recuperación por correo
+ 5. Volver    → ?volver=... regresa al destino que pidió la página
+Toda la comunicación con Google Sheets + Apps Script pasa por SP.api.
+========================================================================== */
 (function () {
   'use strict';
-
   var SP = (window.SP = window.SP || {});
   var cfg = SP.config || {};
   var aviso = SP.aviso || function (m) { window.alert(m); };
-
   function $(sel, ctx) { return (ctx || document).querySelector(sel); }
   function $$(sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); }
   function esc(v) { return SP.esc ? SP.esc(v) : String(v || ''); }
-
   var RE_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
   /** Página a la que volver tras iniciar sesión (?volver=...). */
   function destinoVolver() {
     var v = SP.param ? SP.param('volver') : '';
-    // Solo rutas relativas simples del propio sitio (evita redirecciones externas)
     if (!v || /^[a-z]+:\/\//i.test(v) || v.indexOf('//') === 0) return '';
     return v;
   }
-
   function ir(ruta) { window.location.href = ruta; }
 
   /* ======================================================================
-     ESTADO DE BOTONES
-     ====================================================================== */
+  ESTADO DE BOTONES
+  ====================================================================== */
   function ocupado(btn, texto) {
     if (!btn) return;
     btn.dataset.html = btn.innerHTML;
@@ -52,8 +44,8 @@
   }
 
   /* ======================================================================
-     1. PESTAÑAS
-     ====================================================================== */
+  1. PESTAÑAS
+  ====================================================================== */
   function iniciarPestanas() {
     var tabs = $$('.auth-tab');
     var forms = $$('.auth-form');
@@ -67,12 +59,9 @@
       });
       forms.forEach(function (f) { f.classList.toggle('is-active', f.id === id); });
       $$('.field-error').forEach(function (el) { el.textContent = ''; });
-
       var activo = document.getElementById(id);
       var foco = activo && activo.querySelector('input:not([type="hidden"]), select, textarea');
       if (foco) setTimeout(function () { foco.focus(); }, 60);
-
-      // Reflejar la pestaña en la URL para poder compartir el enlace directo
       if (window.history && window.history.replaceState) {
         var url = new URL(window.location.href);
         if (id === 'form-registro') url.searchParams.set('modo', 'registro');
@@ -93,13 +82,24 @@
       });
     });
 
-    // Permitir entrar directo al registro con ?modo=registro
-    if ((SP.param ? SP.param('modo') : '') === 'registro') activar('form-registro');
+    // Detectar modo desde URL (?modo=registro, ?modo=recuperar, ?modo=reset)
+    var modoUrl = SP.param ? SP.param('modo') : '';
+    if (modoUrl === 'registro') {
+      activar('form-registro');
+    } else if (modoUrl === 'recuperar') {
+      $$('.auth-form').forEach(function(f) { f.classList.remove('is-active'); });
+      var formPedir = document.getElementById('form-reset-pedir');
+      if (formPedir) formPedir.classList.add('is-active');
+    } else if (modoUrl === 'reset') {
+      $$('.auth-form').forEach(function(f) { f.classList.remove('is-active'); });
+      var formNueva = document.getElementById('form-reset-nueva');
+      if (formNueva) formNueva.classList.add('is-active');
+    }
   }
 
   /* ======================================================================
-     2. MOSTRAR / OCULTAR CONTRASEÑA
-     ====================================================================== */
+  2. MOSTRAR / OCULTAR CONTRASEÑA
+  ====================================================================== */
   function iniciarVerPassword() {
     $$('.field-password__toggle').forEach(function (btn) {
       btn.addEventListener('click', function () {
@@ -116,8 +116,8 @@
   }
 
   /* ======================================================================
-     3. MEDIDOR DE FUERZA DE CONTRASEÑA
-     ====================================================================== */
+  3. MEDIDOR DE FUERZA DE CONTRASEÑA
+  ====================================================================== */
   function fuerzaDe(pass) {
     var p = String(pass || '');
     var puntos = 0;
@@ -129,15 +129,12 @@
     if (p.length < 6) puntos = 1;
     return Math.max(1, Math.min(4, puntos));
   }
-
   function iniciarMedidor() {
     var input = $('#reg-password');
     var medidor = $('#medidor-password');
     if (!input || !medidor) return;
-
     var barras = $$('.pass-meter__bar', medidor);
     var leyenda = $('#medidor-texto');
-
     input.addEventListener('input', function () {
       if (!input.value) {
         barras.forEach(function (b) { b.className = 'pass-meter__bar'; });
@@ -147,7 +144,6 @@
       var nivel = fuerzaDe(input.value);
       var clase = nivel <= 1 ? 'is-weak' : nivel === 2 ? 'is-mid' : 'is-strong';
       var nombres = { 1: 'Débil', 2: 'Aceptable', 3: 'Buena', 4: 'Muy fuerte' };
-
       barras.forEach(function (b, i) {
         b.className = 'pass-meter__bar' + (i < nivel ? ' is-on ' + clase : '');
       });
@@ -156,24 +152,20 @@
   }
 
   /* ======================================================================
-     4. LOGIN
-     ====================================================================== */
+  4. LOGIN
+  ====================================================================== */
   function iniciarLogin() {
     var form = $('#form-login');
     if (!form) return;
-
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-
       var btn = $('#btn-login');
       var errorDiv = $('#error-login');
       var email = ($('#login-email') || {}).value || '';
       var password = ($('#login-password') || {}).value || '';
       var recordarEl = $('#login-recordar');
-
       email = email.trim();
       if (errorDiv) errorDiv.textContent = '';
-
       if (!RE_EMAIL.test(email)) {
         if (errorDiv) errorDiv.textContent = 'Revisá el formato de tu correo electrónico.';
         return;
@@ -182,9 +174,7 @@
         if (errorDiv) errorDiv.textContent = 'Escribí tu contraseña para continuar.';
         return;
       }
-
       ocupado(btn, 'Verificando…');
-
       SP.api.post('login', { email: email, password: password })
         .then(function (data) {
           if (!data.exito) {
@@ -192,11 +182,9 @@
             libre(btn);
             return;
           }
-
           var recordar = recordarEl ? !!recordarEl.checked : null;
           var sesion = SP.sesion.guardar(data, recordar, { email: email });
           var nombre = SP.primerNombre(sesion.nombre);
-
           if (SP.sesion.esActivo(sesion.estado)) {
             aviso('Bienvenido/a de vuelta, ' + nombre + '.', 'ok');
             setTimeout(function () { ir(destinoVolver() || SP.url('oraculo')); }, 700);
@@ -218,18 +206,15 @@
   }
 
   /* ======================================================================
-     5. REGISTRO
-     ====================================================================== */
+  5. REGISTRO
+  ====================================================================== */
   function iniciarRegistro() {
     var form = $('#form-registro');
     if (!form) return;
-
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-
       var btn = $('#btn-registro');
       var errorDiv = $('#error-registro');
-
       var nombre = (($('#reg-nombre') || {}).value || '').trim();
       var email = (($('#reg-email') || {}).value || '').trim();
       var password = ($('#reg-password') || {}).value || '';
@@ -237,9 +222,7 @@
       var whatsapp = (($('#reg-whatsapp') || {}).value || '').trim();
       var ubicacion = (($('#reg-ubicacion') || {}).value || '').trim();
       var terminosEl = $('#reg-terminos');
-
       if (errorDiv) errorDiv.textContent = '';
-
       if (nombre.length < 2) {
         if (errorDiv) errorDiv.textContent = 'Escribí tu nombre completo.';
         return;
@@ -260,9 +243,7 @@
         if (errorDiv) errorDiv.textContent = 'Necesitamos tu aceptación para poder enviarte la bitácora.';
         return;
       }
-
       ocupado(btn, 'Creando tu espacio…');
-
       SP.api.post('registrar', {
         nombre: nombre,
         email: email,
@@ -276,8 +257,6 @@
             libre(btn);
             return;
           }
-
-          // Aviso al webhook de automatización (Make) sin bloquear el flujo
           var hook = (cfg.webhooks && cfg.webhooks.registro) || '';
           if (hook) {
             try {
@@ -291,14 +270,12 @@
               }).catch(function () { /* el registro ya quedó en el Sheet */ });
             } catch (err) { /* ignorar */ }
           }
-
           var sesion = SP.sesion.guardar(data, true, {
             id: data.id_usuario || '',
             nombre: nombre,
             email: email,
             estado: 'PENDIENTE',
           });
-
           aviso('¡Tu espacio quedó creado! Ahora elegí tu pase.', 'ok');
           setTimeout(function () {
             ir(SP.url('pago', { email: sesion.email, item: 'pase-permanente', nuevo: '1' }));
@@ -315,15 +292,13 @@
   }
 
   /* ======================================================================
-     6. RECUPERAR CONTRASEÑA
-     ====================================================================== */
+  6. RECUPERAR CONTRASEÑA (panel desplegable antiguo)
+  ====================================================================== */
   function iniciarRecuperar() {
     var form = $('#form-recuperar');
     if (!form) return;
-
     var panelRecuperar = $('#form-recuperar');
     var btnAbrir = $('#btn-abrir-recuperar');
-
     if (btnAbrir && panelRecuperar) {
       btnAbrir.addEventListener('click', function (e) {
         e.preventDefault();
@@ -338,7 +313,6 @@
         }
       });
     }
-
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var btn = $('#btn-recuperar');
@@ -347,14 +321,11 @@
       var email = (($('#rec-email') || {}).value || '').trim();
       if (errorDiv) errorDiv.textContent = '';
       if (okDiv) okDiv.textContent = '';
-
       if (!RE_EMAIL.test(email)) {
         if (errorDiv) errorDiv.textContent = 'Revisá el formato de tu correo electrónico.';
         return;
       }
-
       ocupado(btn, 'Enviando…');
-
       SP.api.post('solicitar_reset', { email: email })
         .then(function (data) {
           libre(btn);
@@ -375,23 +346,92 @@
   }
 
   /* ======================================================================
-     7. SESIÓN YA INICIADA
-     ----------------------------------------------------------------------
-     Si alguien llega a auth.html con la sesión abierta, no le hacemos
-     escribir todo otra vez: le ofrecemos continuar.
-     ====================================================================== */
+  7b. RECUPERACIÓN POR URL (?modo=recuperar o ?modo=reset)
+  ====================================================================== */
+  function iniciarRecuperacionPorURL() {
+    var modo = SP.param ? SP.param('modo') : '';
+    var token = SP.param ? SP.param('token') : '';
+    var email = SP.param ? SP.param('email') : '';
+
+    // MODO: RECUPERAR (pedir email para enviar el link)
+    if (modo === 'recuperar') {
+      var formPedir = document.getElementById('form-reset-pedir');
+      var btnPedir = document.getElementById('btn-reset-pedir');
+      if (formPedir && btnPedir) {
+        formPedir.addEventListener('submit', function(e) {
+          e.preventDefault();
+          var emailVal = (document.getElementById('reset-email') || {}).value || '';
+          emailVal = emailVal.trim();
+          if (!emailVal) return;
+          ocupado(btnPedir, 'Enviando...');
+          SP.api.post('solicitar_reset', { email: emailVal })
+            .then(function(r) {
+              libre(btnPedir);
+              alert('✅ ' + (r && r.mensaje || 'Revisá tu correo.'));
+              window.location.href = 'auth.html';
+            })
+            .catch(function() {
+              libre(btnPedir);
+              alert('Error al enviar. Intentá de nuevo.');
+            });
+        });
+      }
+    }
+    // MODO: RESET (crear nueva contraseña después de hacer clic en el email)
+    else if (modo === 'reset' && token && email) {
+      var formNueva = document.getElementById('form-reset-nueva');
+      var btnNueva = document.getElementById('btn-reset-nueva');
+      var errorEl = document.getElementById('error-reset-nueva');
+      if (formNueva && btnNueva) {
+        formNueva.addEventListener('submit', function(e) {
+          e.preventDefault();
+          var pass1 = (document.getElementById('reset-nueva-pass') || {}).value || '';
+          var pass2 = (document.getElementById('reset-nueva-pass2') || {}).value || '';
+          if (errorEl) errorEl.textContent = '';
+          if (pass1 !== pass2) {
+            if (errorEl) errorEl.textContent = 'Las contraseñas no coinciden.';
+            return;
+          }
+          if (pass1.length < 6) {
+            if (errorEl) errorEl.textContent = 'La contraseña debe tener al menos 6 caracteres.';
+            return;
+          }
+          ocupado(btnNueva, 'Guardando...');
+          SP.api.post('confirmar_reset', {
+            email: email,
+            token: token,
+            password: pass1
+          })
+          .then(function(r) {
+            libre(btnNueva);
+            if (r && r.exito) {
+              alert('✅ ' + r.mensaje + '\n\nAhora vas a poder ingresar con tu nueva contraseña.');
+              window.location.href = 'auth.html';
+            } else {
+              if (errorEl) errorEl.textContent = (r && r.error) || 'Error al actualizar la contraseña.';
+            }
+          })
+          .catch(function(err) {
+            libre(btnNueva);
+            if (errorEl) errorEl.textContent = 'Error de conexión. Intentá de nuevo.';
+          });
+        });
+      }
+    }
+  }
+
+  /* ======================================================================
+  8. SESIÓN YA INICIADA
+  ====================================================================== */
   function iniciarSesionExistente() {
     var sesion = SP.sesion.leer();
     if (!sesion || !sesion.id) return;
-
     var barra = $('#aviso-sesion');
     if (!barra) return;
-
     var activo = SP.sesion.esActivo(sesion.estado);
     var destino = activo ? (destinoVolver() || SP.url('oraculo'))
                          : SP.url('pago', { email: sesion.email, item: 'pase-permanente' });
     var etiqueta = activo ? 'Continuar al Oráculo' : 'Completar mi pase';
-
     barra.innerHTML =
       '<div class="aviso ' + (activo ? 'aviso--ok' : 'aviso--warn') + '">' +
         '<i class="fa-solid ' + (activo ? 'fa-circle-check' : 'fa-hourglass-half') + '" aria-hidden="true"></i>' +
@@ -406,9 +446,7 @@
           '</div>' +
         '</div>' +
       '</div>';
-
     SP.mostrar(barra, true);
-
     var salir = $('#btn-salir-bar');
     if (salir) {
       salir.addEventListener('click', function () {
@@ -423,8 +461,8 @@
   }
 
   /* ======================================================================
-     ARRANQUE
-     ====================================================================== */
+  ARRANQUE
+  ====================================================================== */
   document.addEventListener('DOMContentLoaded', function () {
     iniciarPestanas();
     iniciarVerPassword();
@@ -433,5 +471,6 @@
     iniciarRegistro();
     iniciarRecuperar();
     iniciarSesionExistente();
+    iniciarRecuperacionPorURL();
   });
 })();

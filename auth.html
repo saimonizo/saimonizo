@@ -114,7 +114,7 @@
             <button type="button" class="link-quiet" id="btn-abrir-recuperar"
                     aria-expanded="false" aria-controls="form-recuperar"
                     style="background:none;border:0;padding:0;font:inherit;cursor:pointer">
-              Olvidé mi contraseña
+            <a href="auth.html?modo=recuperar" style="color:var(--violet-soft);font-size:0.82rem;text-decoration:underline;text-underline-offset:3px;">Olvidé mi contraseña</a>
             </button>
           </div>
 
@@ -131,22 +131,47 @@
         </div>
       </form>
 
-      <!-- Recuperación de contraseña (su propio formulario, oculto hasta pedirlo) -->
-      <form id="form-recuperar" class="panel hidden" style="margin-top:1.25rem" novalidate>
-        <h3 style="font-size:1rem;letter-spacing:.1em">Recuperar acceso</h3>
-        <p class="field-hint" style="margin-bottom:1.1rem">
-          Escribí el correo con el que te registraste y te enviamos un enlace para crear una nueva contraseña.
-        </p>
-        <div class="field">
-          <label for="rec-email">Correo electrónico</label>
-          <input type="email" id="rec-email" class="control" placeholder="tu@email.com" autocomplete="email">
-        </div>
-        <div class="field-error" id="error-recuperar" role="alert"></div>
-        <div class="field-hint" id="ok-recuperar" style="color:var(--ok)" role="status"></div>
-        <button type="submit" class="btn btn--ghost btn--block" id="btn-recuperar" style="margin-top:.75rem">
-          <i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Enviar enlace de recuperación
-        </button>
-      </form>
+<!-- FORMULARIO: RECUPERAR CONTRASEÑA (Paso 1: pedir email) -->
+<form id="form-reset-pedir" class="auth-form" hidden>
+  <div class="panel panel--pad">
+    <h2 style="font-size:1.2rem;margin-bottom:0.5rem;">Recuperar acceso</h2>
+    <p class="text-muted" style="font-size:0.9rem;margin-bottom:1.5rem;">
+      Escribí el correo con el que te registraste y te enviamos un enlace para crear una nueva contraseña.
+    </p>
+    <div class="field">
+      <label for="reset-email">Correo electrónico</label>
+      <input type="email" id="reset-email" class="control" required placeholder="tu@correo.com">
+    </div>
+    <button type="submit" class="btn btn--primary btn--block" id="btn-reset-pedir">
+      Enviar enlace de recuperación
+    </button>
+    <div class="auth-footer">
+      <a href="auth.html" style="color:var(--violet-soft);font-size:0.82rem;text-decoration:underline;">← Volver al ingreso</a>
+    </div>
+  </div>
+</form>
+
+<!-- FORMULARIO: NUEVA CONTRASEÑA (Paso 2: después de hacer clic en el link del email) -->
+<form id="form-reset-nueva" class="auth-form" hidden>
+  <div class="panel panel--pad">
+    <h2 style="font-size:1.2rem;margin-bottom:0.5rem;">Creá tu nueva contraseña</h2>
+    <p class="text-muted" style="font-size:0.9rem;margin-bottom:1.5rem;">
+      Elegí una contraseña segura para volver a ingresar al Oráculo.
+    </p>
+    <div class="field">
+      <label for="reset-nueva-pass">Nueva contraseña</label>
+      <input type="password" id="reset-nueva-pass" class="control" required minlength="6" placeholder="Mínimo 6 caracteres">
+    </div>
+    <div class="field">
+      <label for="reset-nueva-pass2">Repetí la contraseña</label>
+      <input type="password" id="reset-nueva-pass2" class="control" required minlength="6" placeholder="Repetila para confirmar">
+    </div>
+    <div class="field-error" id="error-reset-nueva" role="alert"></div>
+    <button type="submit" class="btn btn--primary btn--block" id="btn-reset-nueva">
+      Guardar nueva contraseña
+    </button>
+  </div>
+</form>
 
       <!-- ===================== FORMULARIO: REGISTRO ===================== -->
       <form id="form-registro" class="auth-form" role="tabpanel" aria-labelledby="tab-registro" novalidate>
