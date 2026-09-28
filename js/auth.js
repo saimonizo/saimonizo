@@ -82,19 +82,33 @@ Toda la comunicación con Google Sheets + Apps Script pasa por SP.api.
       });
     });
 
-    // Detectar modo desde URL (?modo=registro, ?modo=recuperar, ?modo=reset)
-    var modoUrl = SP.param ? SP.param('modo') : '';
-    if (modoUrl === 'registro') {
-      activar('form-registro');
-    } else if (modoUrl === 'recuperar') {
-      $$('.auth-form').forEach(function(f) { f.classList.remove('is-active'); });
-      var formPedir = document.getElementById('form-reset-pedir');
-      if (formPedir) formPedir.classList.add('is-active');
-    } else if (modoUrl === 'reset') {
-      $$('.auth-form').forEach(function(f) { f.classList.remove('is-active'); });
-      var formNueva = document.getElementById('form-reset-nueva');
-      if (formNueva) formNueva.classList.add('is-active');
-    }
+// Detectar modo desde URL (?modo=registro, ?modo=recuperar, ?modo=reset)
+var modoUrl = SP.param ? SP.param('modo') : '';
+if (modoUrl === 'registro') {
+  activar('form-registro');
+} else if (modoUrl === 'recuperar') {
+  // Ocultar todos los formularios y mostrar solo el de pedir email
+  $$('.auth-form').forEach(function(f) { 
+    f.classList.remove('is-active'); 
+    f.hidden = true; // <-- OCULTAMOS TODOS
+  });
+  var formPedir = document.getElementById('form-reset-pedir');
+  if (formPedir) {
+    formPedir.hidden = false; // <-- MOSTRAMOS ESTE (quita el atributo hidden)
+    formPedir.classList.add('is-active');
+  }
+} else if (modoUrl === 'reset') {
+  // Ocultar todos los formularios y mostrar solo el de nueva contraseña
+  $$('.auth-form').forEach(function(f) { 
+    f.classList.remove('is-active'); 
+    f.hidden = true; // <-- OCULTAMOS TODOS
+  });
+  var formNueva = document.getElementById('form-reset-nueva');
+  if (formNueva) {
+    formNueva.hidden = false; // <-- MOSTRAMOS ESTE (quita el atributo hidden)
+    formNueva.classList.add('is-active');
+  }
+}
   }
 
   /* ======================================================================
@@ -346,80 +360,79 @@ Toda la comunicación con Google Sheets + Apps Script pasa por SP.api.
   }
 
   /* ======================================================================
-  7b. RECUPERACIÓN POR URL (?modo=recuperar o ?modo=reset)
-  ====================================================================== */
-  function iniciarRecuperacionPorURL() {
-    var modo = SP.param ? SP.param('modo') : '';
-    var token = SP.param ? SP.param('token') : '';
-    var email = SP.param ? SP.param('email') : '';
+7b. RECUPERACIÓN POR URL (?modo=recuperar o ?modo=reset)
+====================================================================== */
+function iniciarRecuperacionPorURL() {
+  var modo = SP.param ? SP.param('modo') : '';
+  var token = SP.param ? SP.param('token') : '';
+  var email = SP.param ? SP.param('email') : '';
 
-    // MODO: RECUPERAR (pedir email para enviar el link)
-    if (modo === 'recuperar') {
-      var formPedir = document.getElementById('form-reset-pedir');
-      var btnPedir = document.getElementById('btn-reset-pedir');
-      if (formPedir && btnPedir) {
-        formPedir.addEventListener('submit', function(e) {
-          e.preventDefault();
-          var emailVal = (document.getElementById('reset-email') || {}).value || '';
-          emailVal = emailVal.trim();
-          if (!emailVal) return;
-          ocupado(btnPedir, 'Enviando...');
-          SP.api.post('solicitar_reset', { email: emailVal })
-            .then(function(r) {
-              libre(btnPedir);
-              alert('✅ ' + (r && r.mensaje || 'Revisá tu correo.'));
-              window.location.href = 'auth.html';
-            })
-            .catch(function() {
-              libre(btnPedir);
-              alert('Error al enviar. Intentá de nuevo.');
-            });
-        });
-      }
-    }
-    // MODO: RESET (crear nueva contraseña después de hacer clic en el email)
-    else if (modo === 'reset' && token && email) {
-      var formNueva = document.getElementById('form-reset-nueva');
-      var btnNueva = document.getElementById('btn-reset-nueva');
-      var errorEl = document.getElementById('error-reset-nueva');
-      if (formNueva && btnNueva) {
-        formNueva.addEventListener('submit', function(e) {
-          e.preventDefault();
-          var pass1 = (document.getElementById('reset-nueva-pass') || {}).value || '';
-          var pass2 = (document.getElementById('reset-nueva-pass2') || {}).value || '';
-          if (errorEl) errorEl.textContent = '';
-          if (pass1 !== pass2) {
-            if (errorEl) errorEl.textContent = 'Las contraseñas no coinciden.';
-            return;
-          }
-          if (pass1.length < 6) {
-            if (errorEl) errorEl.textContent = 'La contraseña debe tener al menos 6 caracteres.';
-            return;
-          }
-          ocupado(btnNueva, 'Guardando...');
-          SP.api.post('confirmar_reset', {
-            email: email,
-            token: token,
-            password: pass1
-          })
+  // MODO: RECUPERAR (pedir email para enviar el link)
+  if (modo === 'recuperar') {
+    var formPedir = document.getElementById('form-reset-pedir');
+    var btnPedir = document.getElementById('btn-reset-pedir');
+    if (formPedir && btnPedir) {
+      formPedir.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var emailVal = (document.getElementById('reset-email') || {}).value || '';
+        emailVal = emailVal.trim();
+        if (!emailVal) return;
+        ocupado(btnPedir, 'Enviando...');
+        SP.api.post('solicitar_reset', { email: emailVal })
           .then(function(r) {
-            libre(btnNueva);
-            if (r && r.exito) {
-              alert('✅ ' + r.mensaje + '\n\nAhora vas a poder ingresar con tu nueva contraseña.');
-              window.location.href = 'auth.html';
-            } else {
-              if (errorEl) errorEl.textContent = (r && r.error) || 'Error al actualizar la contraseña.';
-            }
+            libre(btnPedir);
+            alert('✅ ' + (r && r.mensaje || 'Revisá tu correo.'));
+            window.location.href = 'auth.html';
           })
-          .catch(function(err) {
-            libre(btnNueva);
-            if (errorEl) errorEl.textContent = 'Error de conexión. Intentá de nuevo.';
+          .catch(function() {
+            libre(btnPedir);
+            alert('Error al enviar. Intentá de nuevo.');
           });
-        });
-      }
+      });
     }
   }
-
+  // MODO: RESET (crear nueva contraseña después de hacer clic en el email)
+  else if (modo === 'reset' && token && email) {
+    var formNueva = document.getElementById('form-reset-nueva');
+    var btnNueva = document.getElementById('btn-reset-nueva');
+    var errorEl = document.getElementById('error-reset-nueva');
+    if (formNueva && btnNueva) {
+      formNueva.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var pass1 = (document.getElementById('reset-nueva-pass') || {}).value || '';
+        var pass2 = (document.getElementById('reset-nueva-pass2') || {}).value || '';
+        if (errorEl) errorEl.textContent = '';
+        if (pass1 !== pass2) {
+          if (errorEl) errorEl.textContent = 'Las contraseñas no coinciden.';
+          return;
+        }
+        if (pass1.length < 6) {
+          if (errorEl) errorEl.textContent = 'La contraseña debe tener al menos 6 caracteres.';
+          return;
+        }
+        ocupado(btnNueva, 'Guardando...');
+        SP.api.post('confirmar_reset', {
+          email: email,
+          token: token,
+          password: pass1
+        })
+        .then(function(r) {
+          libre(btnNueva);
+          if (r && r.exito) {
+            alert('✅ ' + r.mensaje + '\n\nAhora vas a poder ingresar con tu nueva contraseña.');
+            window.location.href = 'auth.html';
+          } else {
+            if (errorEl) errorEl.textContent = (r && r.error) || 'Error al actualizar la contraseña.';
+          }
+        })
+        .catch(function(err) {
+          libre(btnNueva);
+          if (errorEl) errorEl.textContent = 'Error de conexión. Intentá de nuevo.';
+        });
+      });
+    }
+  }
+}
   /* ======================================================================
   8. SESIÓN YA INICIADA
   ====================================================================== */
