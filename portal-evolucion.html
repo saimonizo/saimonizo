@@ -100,14 +100,6 @@
             <em>Evolución</em> para trabajar en el sentido de vida.
           </p>
         </div>
-          <!-- 3. Álbum (abajo de todo, centrado) -->
-  <div class="bloque-album" data-reveal style="max-width:560px; margin:3rem auto 0">
-    <p style="margin-bottom:1rem"><i class="fa-solid fa-lightbulb" style="color:var(--gold)" aria-hidden="true"></i> Si antes de hacer la experiencia querés escuchar <br>
-      <strong>Evolución (Full Álbum)</strong></p>
-    <a class="btn btn--ghost btn--sm" id="link-album" href="#" target="_blank" rel="noopener">
-      <i class="fa-brands fa-youtube" aria-hidden="true"></i> Hacé click acá
-    </a>
-  </div>
 
             <section class="seccion seccion--divided" id="quees">
       <div class="contenedor contenedor--mid">
@@ -135,112 +127,106 @@
                   allowfullscreen></iframe>
         </div>
 
-        <!-- Pasos del viaje -->
-        <div class="grid-3" style="margin-top:3rem">
-          <article class="ventanita" data-reveal>
-            <span class="ventanita__icon"><i class="fa-solid fa-fingerprint" aria-hidden="true"></i></span>
-            <h3>Registrate</h3>
-            <p>Completá tus datos para ordenar tu bitácora del viaje.</p>
-          </article>
-          <article class="ventanita" data-reveal="120">
-            <span class="ventanita__icon"><i class="fa-solid fa-key" aria-hidden="true"></i></span>
-            <h3>Elegí el medio de pago</h3>
-            <p>Desbloquea tu pase permanente:<br>
-              <br>
-              Mercado Pago <strong>$22.000</strong><br>
-              Transferencia <strong>$20.000</strong></p>
-          </article>
-          <article class="ventanita" data-reveal="240">
-            <span class="ventanita__icon"><i class="fa-solid fa-mountain-sun" aria-hidden="true"></i></span>
-            <h3>Viví el viaje</h3>
-            <p>Entrá al Oráculo y recorré el ritual de principio a fin cuantas veces quieras.<br>
-              Al finalizar recibirás por correo tu bitácora.</p>
-          </article>
-        </div>
+        <!-- SECCIÓN: CÓMO EMPEZAR (Limpia y derivando a auth.html) -->
+        <section class="seccion seccion--divided" id="comenzar" style="padding-top: 2rem;">
+          <div class="contenedor contenedor--narrow">
+            <h2 class="section-title" data-reveal style="text-align: center;">Comenzá tu viaje</h2>
+            <p class="text-muted" style="text-align: center; margin-bottom: 2.5rem;" data-reveal>
+              En tres simples pasos accedés a la experiencia completa y recibís tu bitácora personal.
+            </p>
+            
+            <div class="grid-pair" style="gap: 2rem; align-items: stretch;" data-reveal>
+              
+              <!-- Paso 1: Registro -->
+              <div class="panel panel--pad" style="text-align: center;">
+                <div style="font-size: 2.5rem; color: var(--violet-soft); margin-bottom: 1rem;">
+                  <i class="fa-solid fa-user-plus"></i>
+                </div>
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">1. Creá tu cuenta</h3>
+                <p class="text-muted" style="font-size: 0.9rem; margin-bottom: 1.5rem;">
+                  Completá tus datos de forma segura. Solo te pedimos lo necesario para coordinar tu acceso y enviarte tu bitácora.
+                </p>
+                <!-- Este link abre directamente la pestaña de Registro en auth.html -->
+                <a href="auth.html?modo=registro" class="btn btn--primary btn--block">
+                  Registrarme ahora
+                </a>
+              </div>
+
+              <!-- Paso 2: Pago -->
+              <div class="panel panel--pad" style="text-align: center;">
+                <div style="font-size: 2.5rem; color: var(--violet-soft); margin-bottom: 1rem;">
+                  <i class="fa-solid fa-key"></i>
+                </div>
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">2. Activá tu pase</h3>
+                <p class="text-muted" style="font-size: 0.9rem; margin-bottom: 1.5rem;">
+                  Elegí entre Mercado Pago o Transferencia (con 10% de descuento). Una vez acreditado, tu acceso es <strong>permanente</strong>.
+                </p>
+                <details class="precios-panel" style="border: 1px solid var(--border, #333); border-radius: 8px; padding: 1rem; margin-top: 0.5rem; background: rgba(255,255,255,0.02);">
+  <summary style="cursor: pointer; font-weight: 600; color: var(--violet-soft, #a78bfa); font-size: 0.95rem; margin-bottom: 1rem;">
+    Ver opciones de pago
+  </summary>
+  
+  <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+    
+    <!-- Mercado Pago -->
+    <div style="padding: 0.75rem; background: rgba(255,255,255,0.04); border-radius: 6px; text-align: center;">
+      <strong style="font-size: 0.9rem; display: block; margin-bottom: 0.25rem;">Mercado Pago</strong>
+      <p style="font-size: 0.8rem; color: var(--text-muted, #999); margin: 0 0 0.5rem 0;">Pago inmediato con tarjeta o saldo</p>
+      <a href="auth.html" class="btn btn--primary" style="font-size: 0.85rem; padding: 0.5rem 1rem; display: inline-block;">
+        $22.000
+      </a>
+    </div>
+
+    <!-- Transferencia -->
+    <div style="padding: 0.75rem; background: rgba(255,255,255,0.04); border-radius: 6px; text-align: center;">
+      <strong style="font-size: 0.9rem; display: block; margin-bottom: 0.25rem;">Transferencia bancaria</strong>
+      <p style="font-size: 0.8rem; color: var(--text-muted, #999); margin: 0 0 0.5rem 0;">10% de descuento · Coordinación por chat</p>
+      <a href="auth.html" class="btn btn--primary" style="font-size: 0.85rem; padding: 0.5rem 1rem; display: inline-block;">
+        $20.000
+      </a>
+    </div>
+
+    <!-- Texto cálido -->
+    <p style="font-size: 0.8rem; color: var(--text-muted, #999); text-align: center; margin: 0.5rem 0 0; line-height: 1.4;">
+      ¿Tenés inconvenientes para realizar el pago?<br>
+      <a href="auth.html?modo=registro" style="color: var(--violet-soft, #a78bfa); text-decoration: underline;">Registrate y hablemos</a>, no te quedes afuera.
+    </p>
+
+  </div>
+</details>
+              </div>
+
+            </div>
+
+            <!-- Paso 3: Experiencia (Texto centrado abajo) -->
+            <div class="panel panel--pad" style="text-align: center; margin-top: 2rem;" data-reveal>
+              <div style="font-size: 2.5rem; color: var(--violet-soft); margin-bottom: 1rem;">
+                <i class="fa-solid fa-infinity"></i>
+              </div>
+              <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">3. Viví el viaje</h3>
+              <p class="text-muted" style="font-size: 0.9rem; margin-bottom: 1rem;">
+                Entrá al Oráculo y recorré el ritual de principio a fin cuantas veces quieras. Al finalizar, recibirás tu bitácora por correo.
+              </p>
+            </div>
+
+            <p class="text-center" style="margin-top: 2.5rem;" data-reveal>
+              <span class="text-muted">¿Ya tenés tu cuenta?</span> 
+              <a href="auth.html" style="color: var(--violet-soft); text-decoration: underline; font-weight: 600;">Ingresá acá</a> y continuá desde Mi Espacio.
+            </p>
+
+          </div>
+        </section>
+
+                  <!-- Álbum -->
+  <div class="bloque-album" data-reveal style="max-width:560px; margin:3rem auto 0">
+    <p style="margin-bottom:1rem"><i class="fa-solid fa-lightbulb" style="color:var(--gold)" aria-hidden="true"></i> Si antes de hacer la experiencia querés escuchar <br>
+      <strong>Evolución (Full Álbum)</strong></p>
+    <a class="btn btn--ghost btn--sm" id="link-album" href="https://www.youtube.com/embed/sqgqcQdTCY4" target="_blank" rel="noopener">
+      <i class="fa-brands fa-youtube" aria-hidden="true"></i> Hacé click acá
+    </a>
+  </div>
+
       </div>
-    </section>
-
-    <!-- ======================= FASE 1: REGISTRO ======================= -->
-    <section class="seccion seccion--divided" id="registro">
-      <div class="contenedor contenedor--narrow">
-        <span class="eyebrow" data-reveal style="display:block;text-align:center">Fase 1 de 3</span>
-        <h2 class="section-title" data-reveal>Iniciá tu registro</h2>
-        <p class="section-lead" data-reveal>Completá tus datos para registrarte y adquirir tu acceso.</p>
-
-        <div class="panel" data-reveal style="padding:clamp(1.5rem,4vw,2.5rem)">
-          <form id="form-registro" novalidate>
-            <div class="field">
-              <label for="p-nombre">Nombre completo *</label>
-              <input class="control" type="text" id="p-nombre" name="Nombre" autocomplete="name" required>
-            </div>
-            <div class="field">
-              <label for="p-correo">Correo electrónico *</label>
-              <input class="control" type="email" id="p-correo" name="Correo" autocomplete="email" required>
-            </div>
-            <div class="field">
-              <label for="p-whatsapp">WhatsApp</label>
-              <input class="control" type="tel" id="p-whatsapp" name="Whatsapp" autocomplete="tel">
-            </div>
-            <div class="field">
-              <label for="p-ubicacion">País / Provincia / Ciudad</label>
-              <input class="control" type="text" id="p-ubicacion" name="Ubicacion" required>
-            </div>
-
-            <p class="field-hint">Tus datos se usan únicamente para coordinar tu acceso y enviarte tu bitácora. No compartimos tu información.</p>
-
-            <button class="btn btn--primary btn--block" type="submit" id="btn-registro" style="margin-top:1rem">
-              Registrarme y ver opciones de acceso
-            </button>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======================= FASE 2: PASARELAS ======================= -->
-    <section class="seccion seccion--divided hidden" id="seccion-pasarelas">
-      <div class="contenedor">
-        <span class="eyebrow" style="display:block;text-align:center">Fase 2 de 3</span>
-        <h2 class="section-title">Elegí tu llave de acceso</h2>
-        <p class="section-lead">Creá tu cuenta y elegí cómo activar tu pase permanente. Al final volvés acá con todo desbloqueado.</p>
-
-        <!-- Las pasarelas se generan desde SP.config.catalogo (js/portal.js).
-             El contenido de abajo es el respaldo si no hay catálogo configurado. -->
-        <div class="grid-3" id="grid-pasarelas">
-          <!-- Pase único -->
-          <article class="pasarela">
-            <h3 style="font-size:1rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.35rem">Pase único</h3>
-            <p class="pasarela__tipo">Viví la experiencia 1 vez</p>
-            <p>Ideal si es un primer acercamiento a mi música. Incluye el cortometraje y tu bitácora de viaje.</p>
-            <a class="btn btn--ghost btn--block" data-link="paseUnico" href="#" target="_blank" rel="noopener">Comprar pase</a>
-          </article>
-
-          <!-- Acceso libre (destacada) -->
-          <article class="pasarela pasarela--featured">
-            <span class="pasarela__badge">Recomendado</span>
-            <h3 style="font-size:1rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.35rem">
-              <i class="fa-solid fa-music" aria-hidden="true"></i> Acceso libre
-            </h3>
-            <p class="pasarela__tipo">Cantidad ilimitada de veces</p>
-            <p>Volvé al Oráculo siempre que necesites reconectar. Tu llave no expira.</p>
-            <a class="btn btn--primary btn--block" data-link="accesoLibre" href="#" target="_blank" rel="noopener">Comprar acceso</a>
-          </article>
-
-          <!-- Transferencia -->
-          <article class="pasarela">
-            <h3 style="font-size:1rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.35rem">Transferencia</h3>
-            <p class="pasarela__tipo">Pesos argentinos (ARS)</p>
-            <p>10% de descuento por transferencia. Coordinamos los datos por chat y te enviamos tu llave.</p>
-            <a class="btn btn--quiet btn--block" data-link="whatsapp"
-               data-msg="Hola Simón, quiero acceder al Oráculo Evolución por transferencia." href="#" target="_blank" rel="noopener">Comunicate</a>
-          </article>
-        </div>
-
-        <p class="text-center" style="margin-top:2.5rem;color:var(--text-dim);font-size:.85rem">
-          ¿Ya tenés tu pase? <a href="auth.html" style="color:var(--violet-soft);text-decoration:underline">Ingresá a tu cuenta</a>
-          y continuá desde Mi Espacio.
-        </p>
-      </div>
-    </section>
 
     <!-- ======================= EXPERIENCIAS ======================= -->
     <section class="seccion seccion--divided">
