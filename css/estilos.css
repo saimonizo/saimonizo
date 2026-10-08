@@ -2408,3 +2408,36 @@ select.control option { background: #0b0814; color: var(--text); }
   .testimonios-form-titulo { font-size: 1.5rem; }
   .star-btn { font-size: 1.6rem; }
 }
+
+/* Magic Cards - Portal Evolución */
+.magic-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border, #333);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.magic-card__trigger {
+  transition: all 0.3s ease;
+  user-select: none;
+  cursor: pointer;
+}
+
+.magic-card__trigger:hover {
+  background: rgba(167, 139, 250, 0.05);
+}
+
+.magic-card__trigger.is-active .fa-chevron-down {
+  transform: rotate(180deg);
+}
+
+.magic-card__content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+}
+
+.magic-card__content.is-open {
+  max-height: 500px;
+}

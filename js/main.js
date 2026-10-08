@@ -375,3 +375,56 @@ TESTIMONIOS.JS — Formulario de experiencias (Simplificado)
     initTestimoniosForm();
   }
 })();
+
+// Toggle function for magic cards
+function toggleCard(trigger) {
+  var content = trigger.nextElementSibling;
+  var icon = trigger.querySelector('.fa-chevron-down');
+  
+  // Toggle current card
+  content.classList.toggle('is-open');
+  trigger.classList.toggle('is-active');
+  
+  // Rotate icon
+  if (icon) {
+    icon.style.transform = content.classList.contains('is-open') ? 'rotate(180deg)' : 'rotate(0deg)';
+  }
+}
+
+// Toggle function for magic cards - Portal Evolución
+function toggleCard(trigger) {
+  var content = trigger.nextElementSibling;
+  var icon = trigger.querySelector('.fa-chevron-down');
+  
+  // Toggle current card
+  content.classList.toggle('is-open');
+  trigger.classList.toggle('is-active');
+  
+  // Rotate icon
+  if (icon) {
+    if (content.classList.contains('is-open')) {
+      icon.style.transform = 'rotate(180deg)';
+    } else {
+      icon.style.transform = 'rotate(0deg)';
+    }
+  }
+}
+
+// Reveal animation on scroll
+if (typeof document !== 'undefined') {
+  document.addEventListener('DOMContentLoaded', function() {
+    var revealElements = document.querySelectorAll('[data-reveal]');
+    
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    revealElements.forEach(function(el) {
+      observer.observe(el);
+    });
+  });
+}
