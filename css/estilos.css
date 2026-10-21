@@ -72,7 +72,6 @@
   --font-display:  'Cinzel', 'Times New Roman', serif;
   --font-artistic: 'Cinzel Decorative', 'Cinzel', serif;
   --font-body:     'Montserrat', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-artistic2: 'AquaPura', cursive, sans-serif;
 
   /* Espaciado */
   --gutter:        clamp(1.25rem, 4vw, 2.5rem);
@@ -191,32 +190,12 @@ p:last-child { margin-bottom: 0; }
   font-family: var(--font-artistic);
   font-weight: 500;
   font-size: 1.50rem;
-  color: var(--violet-soft);
+  color: #ffffff;
   letter-spacing: 0.04em;
-  text-shadow: 0 0 26px rgba(139, 92, 246, 0.42);
+  text-shadow: 0 0 14px rgba(139, 92, 246, 0.42);
   display: block;
   margin-top: 8px;  
 }
-
-/* 1. Primero registrás la fuente externa y le ponés un nombre */
-@font-face {
-  font-family: 'AquaPura'; 
-  src: url('pics/aquapura.ttf') format('truetype');
-  font-weight: 500; /* Opcional: vincula este ttf a este peso específico */
-}
-
-/* 2. Después la aplicás a tu clase de CSS */
-.titulo-artistico2 {
-  font-family: 'AquaPura', sans-serif; /* Usás el nombre que creaste arriba */
-  font-weight: 500;
-  font-size: 1.50rem;
-  color: var(--violet-soft);
-  letter-spacing: 0.04em;
-  text-shadow: 0 0 26px rgba(139, 92, 246, 0.42);
-  display: block;
-  margin-top: 8px;
-}
-
 
 /* Rótulo pequeño en mayúsculas (kicker / eyebrow) */
 .eyebrow {
