@@ -72,6 +72,7 @@
   --font-display:  'Cinzel', 'Times New Roman', serif;
   --font-artistic: 'Cinzel Decorative', 'Cinzel', serif;
   --font-body:     'Montserrat', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-artistic2: 'Aqua Pura', cursive, sans-serif;
 
   /* Espaciado */
   --gutter:        clamp(1.25rem, 4vw, 2.5rem);
@@ -188,6 +189,18 @@ p:last-child { margin-bottom: 0; }
 
 .titulo-artistico {
   font-family: var(--font-artistic);
+  font-weight: 500;
+  font-size: 1.50rem;
+  color: var(--violet-soft);
+  letter-spacing: 0.04em;
+  text-shadow: 0 0 26px rgba(139, 92, 246, 0.42);
+  display: block;
+  margin-top: 8px;  
+}
+
+.titulo-artistico2 {
+  font-family: 'Aqua Pura';
+  src: url('pics/aquapura.ttf') format('truetype');
   font-weight: 500;
   font-size: 1.50rem;
   color: var(--violet-soft);
@@ -620,7 +633,7 @@ p:last-child { margin-bottom: 0; }
 
 .hero__scroll {
   position: absolute;
-  bottom: 1.6rem; left: 50%;
+  bottom: 1rem; left: 50%;
   transform: translateX(-50%);
   display: inline-flex;
   flex-direction: column;
